@@ -1,0 +1,8 @@
+.fs-3{
+  cursor: pointer;
+  transition: .5s;
+  &:hover{
+    font-weight: bold;
+    transition: .5s;
+  }
+}
