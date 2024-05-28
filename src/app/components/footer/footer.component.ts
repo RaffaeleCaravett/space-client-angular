@@ -8,9 +8,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit{
-
-
-
+  canvas:any;
+  scene = new THREE.Scene()
+  camera = new THREE.PerspectiveCamera()
+  renderer = new THREE.WebGLRenderer();
+  loader = new GLTFLoader()
+  model:any;
 
   ngOnInit(): void {
     this.render()
@@ -19,21 +22,27 @@ export class FooterComponent implements OnInit{
 
 
 render(){
-let canvas = document.getElementsByClassName('canvas')[0];
-let scene = new THREE.Scene()
-let render = new THREE.WebGL3DRenderTarget()
-let camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000,)
-camera.position.set(0, 0, 1);
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+this.canvas = document.getElementsByClassName('canvas')[0];
+this.scene = new THREE.Scene()
+this.camera = new THREE.PerspectiveCamera( 60, this.canvas.offsetWidth / this.canvas.offsetHeight, 1, 1000,)
+this.camera.position.set(0, 0, 1);
+this.renderer = new THREE.WebGLRenderer({ antialias: true});
+this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
+this.renderer.setClearColor( 0x000000, 0);
 
-canvas.appendChild( renderer.domElement);
 
-let loader = new GLTFLoader()
+this.canvas.appendChild( this.renderer.domElement);
 
-loader.load( 'path/to/model.glb', function ( gltf ) {
 
-	scene.add( gltf.scene );
+this.loader.load( '../../../assets/models/a_windy_day.glb', ( gltf:any )=> {
+
+  this.model = gltf.scene;
+
+this.model.scale.set(.4,.4,.4)
+this.scene.add( this.model );
+const light = new THREE.AmbientLight(0x404040,100000)
+this.scene.add(light)
+this.animate()
 
 }, undefined, function ( error ) {
 
@@ -41,6 +50,16 @@ loader.load( 'path/to/model.glb', function ( gltf ) {
 
 } );
 
+
+
 }
+
+animate() {
+	requestAnimationFrame( ()=>this.animate() );
+	this.renderer.render( this.scene, this.camera );
+  this.model.rotateY(.01)
+ }
+
+
 
 }
