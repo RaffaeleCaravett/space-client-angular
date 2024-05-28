@@ -19,8 +19,6 @@ export class FooterComponent implements OnInit{
     this.render()
   }
 
-
-
 render(){
 this.canvas = document.getElementsByClassName('canvas')[0];
 this.scene = new THREE.Scene()
@@ -43,15 +41,7 @@ this.scene.add( this.model );
 const light = new THREE.AmbientLight(0x404040,100000)
 this.scene.add(light)
 this.animate()
-
-}, undefined, function ( error ) {
-
-	console.error( error );
-
-} );
-
-
-
+}, undefined, function ( error ) { console.error( error ); });
 }
 
 animate() {
@@ -59,7 +49,5 @@ animate() {
 	this.renderer.render( this.scene, this.camera );
   this.model.rotateY(.01)
  }
-
-
 
 }
