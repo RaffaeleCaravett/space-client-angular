@@ -178,3 +178,17 @@
 .rotate{
   transform: rotateX(180deg) rotateY(180deg);
 }
+@media screen and (max-width:550px) {
+  .right{
+    h1{
+    color:red;
+    font-size:65px;
+  }
+  }
+  .left{
+    h1{
+    color:green;
+    font-size:65px;
+  }
+  }
+}
