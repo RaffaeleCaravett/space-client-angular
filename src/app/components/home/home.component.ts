@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
-
+numbers:number[]=[1,2,3,4,5,6,7,8]
 }
