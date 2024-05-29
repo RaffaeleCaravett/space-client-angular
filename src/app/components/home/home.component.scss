@@ -170,3 +170,19 @@
   }
   }
 }
+.hover-effect{
+  &:hover{
+  .border{
+    transform: translateY(50px);
+    transition: 1s;
+  }
+  img{
+    transform: translateY(-50px);
+    transition: 1s;
+    z-index: 2;
+    }
+  }
+  .border, img{
+    transition: 1s;
+  }
+}
