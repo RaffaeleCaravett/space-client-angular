@@ -30,8 +30,46 @@
 }
 }
 .right{
-  color:red
+  h1{
+  color:red;
+  font-size:100px;
+}
 }
 .left{
-  color:green
+  h1{
+  color:green;
+  font-size:100px;
+}
+}
+.justify-content-center{
+  .translate0{
+    transform: translateX(150px);
+  }
+  .translate1{
+    transform: translateX(110px);
+  }
+  .translate2{
+    transform: translateX(70px);
+  }
+  .translate3{
+    transform: translateX(30px);
+  }
+  .translate6{
+    transform: translateX(-30px);
+  }
+  .translate7{
+    transform: translateX(-70px);
+  }
+  .translate8{
+    transform: translateX(-110px);
+  }
+  .translate9{
+    transform: translateX(-150px);
+  }
+  .translate10{
+    transform: translateX(-190px);
+  }
+  .translate11{
+    transform: translateX(-230px);
+  }
 }
