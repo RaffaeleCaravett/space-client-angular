@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
@@ -48,6 +48,14 @@ animate() {
 	requestAnimationFrame( ()=>this.animate() );
 	this.renderer.render( this.scene, this.camera );
   this.model.rotateY(.01)
+ }
+
+
+ @HostListener('window:resize', ['$event'])
+ onResize(event:any) {
+  this.camera.aspect = this.canvas.offsetWidth/ this.canvas.offsetHeight;
+		this.camera.updateProjectionMatrix();
+  this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
  }
 
 }
