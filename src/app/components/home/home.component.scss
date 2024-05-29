@@ -6,29 +6,7 @@
     transition: 1s;
   }
 }
-.row{
-  max-height: 1000px;
-  /* width */
-&::-webkit-scrollbar {
-  width: 0px;
-  display: none;
-}
 
-/* Track */
-&::-webkit-scrollbar-track {
-  background: none;
-}
-
-/* Handle */
-&::-webkit-scrollbar-thumb {
-  background: none;
-}
-
-/* Handle on hover */
-&::-webkit-scrollbar-thumb:hover {
-  background: none;
-}
-}
 .right{
   h1{
   color:red;
