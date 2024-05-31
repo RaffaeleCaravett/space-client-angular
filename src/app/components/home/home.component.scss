@@ -171,8 +171,8 @@
   }
 }
 .hover-effect{
-  overflow: auto;
-  .text{
+  overflow: hidden;
+    .text{
     transform:translateY(-50px);
     transform:translateX(700px) translateY(-50px);
     transition: 1s;
