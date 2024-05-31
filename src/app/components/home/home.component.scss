@@ -1,9 +1,30 @@
 .card{
   transition: 1s;
   scale: .9;
+  .rocket{
+    transform: translateY(1000px);
+    transition: 1s;
+    height: 0px;
+  }
+  .planet{
+    min-height: 100.29px;
+      max-height: 236.69px;
+    transition: 1s;
+    }
   &:hover{
+    background-color:black;
+color: white!important;
     scale: 1;
     transition: 1s;
+    .planet{
+      transform: translateY(-300px);
+      transition: 1s;
+      max-height: 0px;
+    }
+    .rocket{
+      transform: translateY(0px);
+      transition: 1s;
+    }
   }
 }
 
@@ -28,7 +49,9 @@
       z-index: 6;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -40,7 +63,9 @@
       z-index: 6;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -52,7 +77,9 @@
       z-index: 6;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -64,7 +91,9 @@
       z-index: 6;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -73,7 +102,9 @@
       z-index: 6;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -85,7 +116,9 @@
       z-index: 8;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -97,7 +130,9 @@
       z-index: 8;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -109,7 +144,9 @@
       z-index: 8;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -121,7 +158,9 @@
       z-index: 8;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -133,7 +172,9 @@
       z-index: 8;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -145,7 +186,9 @@
       z-index: 8;
               position: relative;
       transition: .5s;
-      scale:1.1
+      scale:1.1;
+          background-color:black!important;
+color: white!important;
     }
     transition:.5s
   }
@@ -172,12 +215,27 @@
 }
 .hover-effect{
   overflow: hidden;
+  h2{
+    z-index: 15;
+  }
+  .background{
+    transform: translateX(-400px);
+    height: 100%;
+    transition: 1s;
+    background-color: rgba(green, .3);
+  }
     .text{
     transform:translateY(-50px);
     transform:translateX(700px) translateY(-50px);
     transition: 1s;
   }
   &:hover{
+    .background{
+      transform: translateX(0px);
+      height: 100%;
+      transition: 1s;
+      background-color: rgba(green, .3);
+    }
   .border{
     transform: translateY(50px);
     transition: 1s;

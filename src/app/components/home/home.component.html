@@ -30,8 +30,9 @@
     </div>
       <div class="row px-3">
        <div class="col-lg-3 col-md-4 col-sm-6 p-2" *ngFor="let n of numbers">
-      <div class="border shadow-lg rounded card bg text-dark">
-        <img src="../../../assets/Images/card.png" alt="" class="rounded-top w-100">
+      <div class="border shadow-lg rounded card bg text-dark overflow-hidden position-relative">
+        <img src="../../../assets/Images/card.png" alt="" class="rounded-top w-100 planet">
+        <p class="rounded-top w-100 rocket position-absolute top-0 fs-1">Planet name</p>
         <p class="fs-4">Title</p>
         <p class="fs-4">price $</p>
         <p class="fs-5">Some random words to rapresent a card footer.</p>
@@ -70,8 +71,11 @@
       </div>
     </div>
 <div class="col-md-4 p-3 hover-effect" *ngFor="let n of numbers1">
-<div class="border py-5 w-75 m-auto">
+<div class="border py-5 w-75 m-auto position-relative overflow-hidden">
   <h2>Some title</h2>
+  <div class="background position-absolute top-0 w-100">
+
+  </div>
 </div>
 <div class="w-100 position-relative">
   <img src="../../../assets/Images/space.jpg" alt="" class="w-100">
