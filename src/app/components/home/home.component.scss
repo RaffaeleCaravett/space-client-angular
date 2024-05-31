@@ -171,15 +171,26 @@
   }
 }
 .hover-effect{
+  overflow: auto;
+  .text{
+    transform:translateY(-50px);
+    transform:translateX(700px) translateY(-50px);
+    transition: 1s;
+  }
   &:hover{
   .border{
     transform: translateY(50px);
     transition: 1s;
   }
   img{
-    transform: translateY(-50px);
+    transform:translateX(-700px) translateY(-50px);
     transition: 1s;
     z-index: 2;
+
+    }
+    .text{
+      transform:translateX(0px) translateY(50px);
+      transition: 1s;
     }
   }
   .border, img{
