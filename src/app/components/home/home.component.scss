@@ -219,7 +219,7 @@ color: white!important;
     z-index: 15;
   }
   .background{
-    transform: translateX(-400px);
+    transform: translateX(-700px);
     height: 100%;
     transition: 1s;
     background-color: rgba(green, .3);
@@ -295,4 +295,7 @@ z-index: -1;
   .canvas-background{
     display: none;
   }
+}
+.smaller{
+  font-size:smaller;
 }
