@@ -61,9 +61,11 @@ animate() {
 
  @HostListener('window:resize', ['$event'])
  onResize(event:any) {
-  this.camera.aspect = this.canvas.offsetWidth/ this.canvas.offsetHeight;
-		this.camera.updateProjectionMatrix();
+
   this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
+   this.camera.aspect = this.canvas.offsetWidth/ this.canvas.offsetHeight;
+		this.camera.updateProjectionMatrix();
+    this.renderer.render(this.scene, this.camera);
  }
 
  @HostListener('wheel', ['$event'])
