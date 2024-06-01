@@ -7,10 +7,17 @@
     </div>
   </div>
   <div class="row py-5 p-0">
-    <div class="col-md-3 col-sm-6 col-12 p-5" *ngFor="let i of images">
-      <div class="border rounded p-3" >
+    <div class="col-lg-3 col-sm-6 col-12 p-5 images" *ngFor="let i of images">
+      <div class="p-5 position-relative" >
       <img src="{{i}}" alt="" class="w-100">
+      <div class="position-absolute top-0 start-50 translate-middle-x">
+<h2 >Some title</h2>
+      <p class="fs-4">
+  Some text just ot see few words one close to another and read a non sense phrase.
+</p>
+</div>
       </div>
+
     </div>
     <img src="../../../assets/Images/redWave.jpg" alt="" class="w-100 svg">
     <div class="col-md-6 py-3"  style="background: rgb(228, 0, 0);">
@@ -75,7 +82,7 @@
         <img src="../../../assets/Images/team.jpg" alt="" class="w-100 rounded border shadow-sm">
       </div>
     </div>
-<div class="col-md-4 p-3 hover-effect" *ngFor="let n of numbers1">
+<div class="col-lg-4 col-12 p-3 hover-effect" *ngFor="let n of numbers1">
 <div class="border py-5 w-75 m-auto position-relative overflow-hidden">
   <h2>Some title</h2>
   <div class="background position-absolute top-0 w-100">
@@ -84,7 +91,7 @@
 </div>
 <div class="w-100 position-relative">
   <img src="../../../assets/Images/space.jpg" alt="" class="w-100">
-  <div class="text fs-4 position-absolute top-0 p-3">
+  <div class="text fs-6 position-absolute top-0 p-3">
 Some random text just to test this css. I even add some extra just to turn back to the start line. Hope i get at least 3 lines of text. No, so i need to add this extra too.
   </div>
 </div>

@@ -255,3 +255,33 @@ color: white!important;
     transition: 1s;
   }
 }
+.images{
+  overflow: hidden;
+  .position-absolute{
+    visibility: hidden;
+    transition: .1s;
+  }
+  .position-relative{
+    visibility: visible;
+    transition: .1s;
+    img{
+      transform: translateX(0px);
+      transition: .5s;
+      }
+  }
+  &:hover{
+      .position-relative{
+      visibility: hidden;
+      transition: .1s;
+      img{
+      transform: translateX(400px);
+      transition: .5s;
+      }
+    }
+    .position-absolute{
+      visibility: visible;
+      transition: .5s;
+    }
+
+  }
+}
