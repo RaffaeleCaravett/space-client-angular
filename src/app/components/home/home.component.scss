@@ -287,4 +287,7 @@ color: white!important;
 }
 .canvas-background{
 height: 90vh;
+position: fixed;
+top: 100px;
+z-index: -1;
 }

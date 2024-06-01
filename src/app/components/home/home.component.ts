@@ -50,14 +50,12 @@ this.scene.add( this.model );
 const light = new THREE.AmbientLight(0x404040,100000)
 this.scene.add(light)
 this.animate()
-console.log(this.model)
 }, undefined, function ( error ) { console.error( error ); });
 }
 
 animate() {
 	requestAnimationFrame( ()=>this.animate() );
 	this.renderer.render( this.scene, this.camera );
-  this.model.rotateY(.01)
  }
 
 
@@ -68,7 +66,14 @@ animate() {
   this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
  }
 
+ @HostListener('wheel', ['$event'])
+onScroll(event:any){
+  if(event.deltaY<0){
+    this.model.rotation.y+=0.1
+  }else{
+    this.model.rotation.y-=0.1
 
-
+  }
+}
 
 }
