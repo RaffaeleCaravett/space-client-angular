@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   constructor() {}
 
 
-  isAuthenticated:boolean = false;
+  isAuthenticated:boolean = true;
 
 
   canActivate(
@@ -18,12 +18,10 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
 
-    if (this.isAuthenticated) {
-      return true;
-    } else {
+    if (!this.isAuthenticated) {
       window.alert("Dovresti prima effettuare il login per accedere a questa pagina.")
-      return false;
     }
+    return this.isAuthenticated;
   }
   authenticateUser(bool?:boolean){
   if(bool){

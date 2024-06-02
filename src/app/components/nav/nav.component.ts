@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthGuard } from 'src/app/core/auth.guard';
 import { AuthService } from 'src/app/shared/auth.service';
 
@@ -10,11 +11,19 @@ import { AuthService } from 'src/app/shared/auth.service';
 export class NavComponent {
 
 
-constructor(private authGuard:AuthGuard,private authService:AuthService){
+constructor(private authGuard:AuthGuard,private authService:AuthService,private router:Router){
 this.authService.isAuthenticated.subscribe((boolean:boolean)=>{
   this.isLoggedIn=boolean
 })
 }
 
 isLoggedIn:any
+
+logout(){
+  localStorage.clear()
+  this.authGuard.authenticateUser(false)
+  this.authService.authenticateUser(false)
+this.router.navigate([''])
+}
+
 }
