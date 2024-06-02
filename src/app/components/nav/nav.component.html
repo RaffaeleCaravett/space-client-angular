@@ -6,7 +6,8 @@
       <div class="col-md-2 fs-3" [routerLink]="'/spaceCrew'">Space crew</div>
       <div class="col-md-2 fs-3" [routerLink]="'/mezzi'">Mezzi</div>
       <div class="col-md-2 fs-3" [routerLink]="'/about'">About us</div>
-      <div class="col-md-2 fs-3" [routerLink]="'/auth'">Login</div>
+      <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="isLoggedIn">Logout</div>
+      <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="!isLoggedIn">Login</div>
     </div>
   </div>
   </nav>
