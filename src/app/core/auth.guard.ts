@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
     if (this.isAuthenticated) {
       return true;
     } else {
+      window.alert("Dovresti prima effettuare il login per accedere a questa pagina.")
       return false;
     }
   }

@@ -6,6 +6,7 @@ import { ItinerariComponent } from './components/itinerari/itinerari.component';
 import { SpaceCrewComponent } from './components/space-crew/space-crew.component';
 import { MezziComponent } from './components/mezzi/mezzi.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,19 +19,20 @@ const routes: Routes = [
   },
   {
     path:"itinerari",
-    component:ItinerariComponent
+    component:ItinerariComponent,canActivate:[AuthGuard]
   },
   {
     path:"spaceCrew",
-    component:SpaceCrewComponent
+    component:SpaceCrewComponent,canActivate:[AuthGuard]
   },
   {
     path:"mezzi",
-    component:MezziComponent
+    component:MezziComponent,canActivate:[AuthGuard]
   },
   {
     path:"about",
     component:AboutUsComponent
+    ,canActivate:[AuthGuard]
   },
   {
     path:"**",
