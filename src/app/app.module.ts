@@ -11,6 +11,7 @@ import { ItinerariComponent } from './components/itinerari/itinerari.component';
 import { SpaceCrewComponent } from './components/space-crew/space-crew.component';
 import { MezziComponent } from './components/mezzi/mezzi.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
