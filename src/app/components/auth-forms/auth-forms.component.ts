@@ -51,4 +51,34 @@ if(error&&error.error.message){
 )
 }
 }
+
+signUp(){
+  if(this.signupForm.valid){
+  this.authService.signUp
+  (
+    {
+      email:this.signupForm.controls['email'].value,
+      password:this.signupForm.controls['password'].value,
+      nome:this.signupForm.controls['nome'].value,
+      cognome:this.signupForm.controls['cognome'].value,
+      eta:this.signupForm.controls['eta'].value
+    }
+  ).subscribe({
+    next:(success:any)=>{
+  console.log(success)
+    },
+    error:(error:any)=>{
+  this.loginFormError="Qualcosa è successo nell'invio della richiesta."
+  if(error&&error.error.message){
+    this.loginFormError=error.error.message
+  }
+    },
+    complete:()=>{
+
+    }
+  }
+  )
+  }
+  }
+
 }
