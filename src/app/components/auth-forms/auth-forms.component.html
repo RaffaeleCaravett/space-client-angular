@@ -5,10 +5,10 @@
   <div class="border rounded p-3 w-50 m-auto form">
     <form [formGroup]="loginForm" #form="ngForm" class="p-4"  (ngSubmit)="logIn()">
 <label for="">Email</label><br>
-<input type="email" class="w-75 my-2 p-2 fs-4" formControlName="email"><br>
+<input type="email" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="email"><br>
 <p class="text-danger" *ngIf="loginForm.touched&&form.submitted&&loginForm.controls['email'].invalid">Campo necessario. Prova un formato tipo : 'a&#64;gmail.com'</p>
 <label for="">Password</label><br>
-<input type="password" class="w-75 my-2 p-2 fs-4" formControlName="password"><br>
+<input type="password" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="password"><br>
 <p class="text-danger" *ngIf="loginForm.touched&&form.submitted&&loginForm.controls['password'].invalid">Campo necessario. Lunghezza minima 6 caratteri.</p>
 <p class="text-danger">{{loginFormError}}</p>
 <button class="btn btn-info my-2" type="submit">Submit</button>
@@ -23,7 +23,22 @@
     <h1>Signup</h1>
     <div class="my-3">
       <div class="border rounded p-3 w-50 m-auto form">
-        <form [formGroup]="signupForm" class="p-4" #signupF="ngForm" (ngSubmit)="logIn()">
+        <form [formGroup]="signupForm" class="p-4" #signupF="ngForm" (ngSubmit)="signUp()">
+          <label for="">Nome</label><br>
+<input type="text" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="nome"><br>
+<p class="text-danger" *ngIf="signupForm.touched&&signupF.submitted&&signupForm.controls['nome'].invalid">Campo necessario. </p>
+<label for="">Cognome</label><br>
+<input type="text" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="cognome"><br>
+<p class="text-danger" *ngIf="signupForm.touched&&signupF.submitted&&signupForm.controls['cognome'].invalid">Campo necessario.</p>
+<label for="">Età</label><br>
+<input type="number" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="eta"><br>
+<p class="text-danger" *ngIf="signupForm.touched&&signupF.submitted&&signupForm.controls['eta'].invalid">Campo necessario. Minimo 18.</p>
+          <label for="">Email</label><br>
+          <input type="email" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="email"><br>
+          <p class="text-danger" *ngIf="signupForm.touched&&signupF.submitted&&signupForm.controls['email'].invalid">Campo necessario. Prova un formato tipo : 'a&#64;gmail.com'</p>
+          <label for="">Password</label><br>
+          <input type="password" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="password"><br>
+          <p class="text-danger" *ngIf="signupForm.touched&&signupF.submitted&&signupForm.controls['password'].invalid">Campo necessario. Lunghezza minima 6 caratteri.</p>
 </form>
       </div>
     </div>
