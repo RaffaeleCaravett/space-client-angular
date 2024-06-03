@@ -39,7 +39,9 @@
           <label for="">Password</label><br>
           <input type="password" class="w-75 my-2 p-2 fs-4 form-control m-auto" formControlName="password"><br>
           <p class="text-danger" *ngIf="signupForm.touched&&signupF.submitted&&signupForm.controls['password'].invalid">Campo necessario. Lunghezza minima 6 caratteri.</p>
-</form>
+          <p class="text-danger">{{signupFormError}}</p>
+          <button class="btn btn-info my-2" type="submit">Submit</button>
+        </form>
       </div>
     </div>
     <hr>

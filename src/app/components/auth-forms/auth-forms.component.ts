@@ -13,6 +13,8 @@ section:string=''
 loginForm!:FormGroup
 signupForm!:FormGroup
 loginFormError:string=''
+signupFormError:string=''
+
 constructor(private authService:AuthService){}
 
 
@@ -68,9 +70,9 @@ signUp(){
   console.log(success)
     },
     error:(error:any)=>{
-  this.loginFormError="Qualcosa è successo nell'invio della richiesta."
+  this.signupFormError="Qualcosa è successo nell'invio della richiesta."
   if(error&&error.error.message){
-    this.loginFormError=error.error.message
+    this.signupFormError=error.error.message
   }
     },
     complete:()=>{
