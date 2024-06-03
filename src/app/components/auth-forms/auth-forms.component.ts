@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
   selector: 'app-auth-forms',
@@ -11,8 +12,8 @@ export class AuthFormsComponent  implements OnInit{
 section:string=''
 loginForm!:FormGroup
 signupForm!:FormGroup
-
-constructor(){}
+loginFormError:string=''
+constructor(private authService:AuthService){}
 
 
 ngOnInit(): void {
@@ -26,6 +27,28 @@ this.loginForm= new FormGroup({
 }
 
 logIn(){
-  console.log(this.loginForm)
+if(this.loginForm.valid){
+this.authService.logIn
+(
+  {
+    email:this.loginForm.controls['email'].value,
+    password:this.loginForm.controls['password'].value
+  }
+).subscribe({
+  next:(success:any)=>{
+console.log(success)
+  },
+  error:(error:any)=>{
+this.loginFormError="Qualcosa è successo nell'invio della richiesta."
+if(error&&error.error.message){
+  this.loginFormError=error.error.message
+}
+  },
+  complete:()=>{
+
+  }
+}
+)
+}
 }
 }
