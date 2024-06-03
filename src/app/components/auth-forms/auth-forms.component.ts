@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-auth-forms',
@@ -8,11 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class AuthFormsComponent  implements OnInit{
 
 section:string=''
+loginForm!:FormGroup
+signupForm!:FormGroup
 
 constructor(){}
 
 
 ngOnInit(): void {
     this.section='login'
+
+this.loginForm= new FormGroup({
+  email:new FormControl('', [Validators.required,Validators.email,Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]),
+  password: new FormControl('',Validators.required)
+})
+
+}
+
+console(){
+  console.log(this.loginForm)
 }
 }

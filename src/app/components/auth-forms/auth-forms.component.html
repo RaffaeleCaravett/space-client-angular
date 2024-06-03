@@ -2,7 +2,16 @@
   <div class="row" *ngIf="section=='login'">
 <h1>Login</h1>
 <div class="my-3">
-  <div class="border rounded p-3 w-50 m-auto"></div>
+  <div class="border rounded p-3 w-50 m-auto form">
+    <form [formGroup]="loginForm">
+<label for="">Email</label><br>
+<input type="text" class="w-75 my-2 p-2" formControlName="email" (input)="console()"><br>
+<p class="text-danger" *ngIf="loginForm.touched&&loginForm.controls['email'].invalid">Campo necessario. Prova un formato tipo : 'a&#64;gmail.com'</p>
+<label for="">Password</label><br>
+<input type="text" class="w-75 my-2 p-2" formControlName="password"><br>
+<p class="text-danger" *ngIf="loginForm.touched&&loginForm.controls['email'].invalid">Campo necessario. Lunghezza minima 6 caratteri.</p>
+    </form>
+  </div>
 </div>
 <hr>
 <p class="fs-5">or</p>
@@ -11,7 +20,10 @@
   <div class="row" *ngIf="section=='signup'">
     <h1>Signup</h1>
     <div class="my-3">
-      <div class="border rounded p-3 w-50 m-auto"></div>
+      <div class="border rounded p-3 w-50 m-auto form">
+        <form [formGroup]="signupForm">
+</form>
+      </div>
     </div>
     <hr>
     <p class="fs-5">or</p>
