@@ -25,7 +25,7 @@ this.loginForm= new FormGroup({
 
 }
 
-console(){
+logIn(){
   console.log(this.loginForm)
 }
 }
