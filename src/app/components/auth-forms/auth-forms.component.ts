@@ -49,9 +49,10 @@ this.authService.logIn
   next:(success:any)=>{
 localStorage.setItem('accessToken',success.tokens.accessToken)
 localStorage.setItem('refreshToken',success.tokens.refreshToken)
+this.loginFormError=""
 this.authService.authenticateUser(true)
 this.router.navigate(['/itinerari'])
-this.loginFormError=""
+
   },
   error:(error:any)=>{
 this.loginFormError="Qualcosa è successo nell'invio della richiesta."

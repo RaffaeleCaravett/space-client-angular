@@ -30,7 +30,7 @@ export class AuthService{
     return this.http.post(environment.API_URL+this.auth+this.login,body)
   }
   verifyToken(token:string){
-    return this.http.get(environment.API_URL+this.auth+token)
+    return this.http.get(environment.API_URL+this.auth+'/'+token)
   }
   verifyRefreshToken(refreshToken:string){
     return this.http.get(environment.API_URL+this.auth+'/refreshToken/'+refreshToken)

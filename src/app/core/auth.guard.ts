@@ -17,10 +17,6 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-
-    if (!this.isAuthenticated) {
-      window.alert("Dovresti prima effettuare il login per accedere a questa pagina.")
-    }
     return this.isAuthenticated;
   }
   authenticateUser(bool?:boolean){
