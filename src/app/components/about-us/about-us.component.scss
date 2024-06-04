@@ -1,4 +1,4 @@
-.position-relative{
+.overflow-hidden{
   .bg-card{
   background: rgba(green, .5);
 height: 100%;
@@ -10,5 +10,11 @@ transform: translateY(-1000px);
     transition: 1s;
     transform: translateY(0px);
   }
+}
+}
+.position-relative{
+.canvas{
+  height: 1000vh;
+  z-index: -1;
 }
 }
