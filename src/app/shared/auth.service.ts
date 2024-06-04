@@ -14,11 +14,13 @@ export class AuthService{
   public register:string='/register'
   public login:string='/login'
   public token:string = ''
+
   constructor(private authGuard:AuthGuard,private http:HttpClient){}
 
   authenticateUser(bool:boolean){
   this.authGuard.authenticateUser(bool)
   this.isAuthenticated.next(bool);
+  this.token=localStorage.getItem('accessToken'||'')!
   }
   signUp(user:{}){
     return this.http.post(environment.API_URL + this.auth +this.register, user);
