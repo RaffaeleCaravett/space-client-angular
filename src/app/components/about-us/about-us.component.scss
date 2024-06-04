@@ -1,0 +1,14 @@
+.position-relative{
+  .bg-card{
+  background: rgba(green, .5);
+height: 100%;
+transition: 1s;
+transform: translateY(-1000px);
+}
+&:hover{
+  .bg-card{
+    transition: 1s;
+    transform: translateY(0px);
+  }
+}
+}

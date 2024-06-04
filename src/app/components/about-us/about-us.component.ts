@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AboutUsComponent {
 stars:number[]=[1,2,3,4,5]
+cards:string[]=['','','']
 }
