@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
   constructor() {}
 
 
-  isAuthenticated:boolean = true;
+  isAuthenticated:boolean = false;
 
 
   canActivate(

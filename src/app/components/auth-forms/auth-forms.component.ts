@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 
 @Component({
@@ -15,7 +16,7 @@ signupForm!:FormGroup
 loginFormError:string=''
 signupFormError:string=''
 
-constructor(private authService:AuthService){}
+constructor(private authService:AuthService,private router:Router){}
 
 
 ngOnInit(): void {
@@ -46,7 +47,10 @@ this.authService.logIn
   }
 ).subscribe({
   next:(success:any)=>{
-console.log(success)
+localStorage.setItem('accessToken',success.tokens.accessToken)
+localStorage.setItem('refreshToken',success.tokens.refreshToken)
+this.authService.authenticateUser(true)
+this.router.navigate(['/itinerari'])
 this.loginFormError=""
   },
   error:(error:any)=>{
