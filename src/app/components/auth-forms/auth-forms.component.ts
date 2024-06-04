@@ -26,6 +26,14 @@ this.loginForm= new FormGroup({
   password: new FormControl('',[Validators.required,Validators.minLength(6)])
 })
 
+this.signupForm = new FormGroup({
+  email:new FormControl('', [Validators.required,Validators.email,Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)]),
+  password: new FormControl('',[Validators.required,Validators.minLength(6)]),
+  nome: new FormControl('',Validators.required),
+  cognome: new FormControl('',Validators.required),
+  eta: new FormControl('',[Validators.required,Validators.min(18)])
+})
+
 }
 
 logIn(){
