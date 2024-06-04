@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./about-us.component.scss']
 })
 export class AboutUsComponent {
-
+stars:number[]=[1,2,3,4,5]
 }
