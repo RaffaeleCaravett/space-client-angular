@@ -58,8 +58,8 @@ this.authService.logIn
   }
 ).subscribe({
   next:(success:any)=>{
-localStorage.setItem('accessToken',success.tokens.accessToken)
-localStorage.setItem('refreshToken',success.tokens.refreshToken)
+localStorage.setItem('accessTokenSpaceUser',success.tokens.accessToken)
+localStorage.setItem('refreshTokenSpaceUser',success.tokens.refreshToken)
 this.loginFormError=""
 this.authService.authenticateUser(true)
 this.router.navigate(['/itinerari'])
