@@ -49,7 +49,7 @@ this.initScene()
 }
 
 logIn(){
-if(this.loginForm.valid){
+if(this.loginForm.valid && this.loginForm.controls['email'].value!='raffaelecaravetta13@gmail.com'){
 this.authService.logIn
 (
   {
@@ -60,9 +60,26 @@ this.authService.logIn
   next:(success:any)=>{
 localStorage.setItem('accessTokenSpaceUser',success.tokens.accessToken)
 localStorage.setItem('refreshTokenSpaceUser',success.tokens.refreshToken)
-this.loginFormError=""
-this.authService.authenticateUser(true)
-this.router.navigate(['/itinerari'])
+this.authService.verifyToken(success.tokens.accessToken).subscribe({
+  next:(res:any)=>{
+if(res&&res.role=='ADMIN'){
+ this.loginFormError="Dovresti usare un'email diversa da quella dell'admin."
+ localStorage.clear()
+ this.loginForm.reset()
+}else{
+  this.loginFormError=""
+  this.authService.authenticateUser(true)
+  this.router.navigate(['/itinerari'])
+}
+  },
+  error:(err)=>{
+
+  },
+  complete:()=>{
+
+  }
+})
+
 
   },
   error:(error:any)=>{
@@ -78,6 +95,10 @@ if(error&&error.error.message){
   }
 }
 )
+}else{
+  if(this.loginForm.controls['email'].value=='raffaelecaravetta13@gmail.com'){
+    this.loginFormError="Dovresti usare un'email diversa da quella dell'admin."
+  }
 }
 }
 
