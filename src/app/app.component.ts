@@ -23,6 +23,11 @@ this.authService.verifyToken(localStorage.getItem("accessTokenSpaceUser")!).subs
   if(data){
     localStorage.setItem('userSpaceUser',JSON.stringify(data))
     this.authService.authenticateUser(true)
+    if(localStorage.getItem('location')){
+      this.router.navigate(['/'+localStorage.getItem('location')])
+    }else{
+      this.router.navigate(['/itinerari'])
+    }
   }
 },
 error:()=>{
@@ -35,7 +40,12 @@ if(localStorage.getItem('refreshTokenSpaceUser')){
         next:(data)=>{
 localStorage.setItem('user',JSON.stringify(data))
 this.authService.authenticateUser(true)
-        }
+if(localStorage.getItem('location')){
+  this.router.navigate(['/'+localStorage.getItem('location')])
+}else{
+  this.router.navigate(['/itinerari'])
+}
+}
       })
 
     }

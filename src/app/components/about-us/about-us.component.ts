@@ -21,6 +21,7 @@ geometry1!:THREE.BoxGeometry
 material1!:THREE.MeshBasicMaterial
 cube1!:THREE.Mesh
 ngOnInit(): void {
+  localStorage.setItem('location','about')
 this.initScene()
 }
 
