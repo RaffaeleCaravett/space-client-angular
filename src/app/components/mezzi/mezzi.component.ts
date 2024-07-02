@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mezzi.component.scss']
 })
 export class MezziComponent implements OnInit{
+
+mezzi:any=[]
+
   ngOnInit(): void {
-localStorage.setItem('location','mezzi')  }
+localStorage.setItem('location','mezzi')
+  }
 
 }
