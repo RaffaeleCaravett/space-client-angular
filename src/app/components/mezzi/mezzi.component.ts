@@ -7,7 +7,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MezziComponent implements OnInit{
 
-mezzi:any=[]
+mezzi:any=
+[
+  {
+    colore:"red"
+  },
+  {
+    colore:"green"
+  },
+  {
+    colore:"yellow"
+  },
+  {
+    colore:"light-blue"
+  },
+  {
+    colore:"pink"
+  },
+  {
+    colore:"dark"
+  },
+]
 
   ngOnInit(): void {
 localStorage.setItem('location','mezzi')
