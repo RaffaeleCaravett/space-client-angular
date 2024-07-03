@@ -7,19 +7,20 @@
     </div>
     <div class="col-md-12 p-3 " *ngFor="let m of mezzi,index as i">
 <div class="border rounded py-5 p-3 shadow personal-height position-relative overflow-hidden"
-[style]="{height:windowHeight+'px',background: getBackground(m.colore)}">
+[style]="{height:windowHeight+'px',background: getBackground(m.colore),backgroundRepeat:'no-repeat',backgroundSize:'cover'}">
   <h1>Unveil the {{i+1}}° vehicle </h1>
   <div class="vehicle vehicle-{{m.colore}} p-5 m-0 bg-white w-100" >
     <div class="index">
       <h2>Vehicle {{i+1}}</h2>
-      <ul class="fs-5">
+      <ul class="fs-5 text-start">
         <li>Seats: 10</li>
         <li>Speed: 100</li>
         <li>Fuel: WTI</li>
         <li>Captain: Jhonny Bravo</li>
       </ul>
     </div>
-    <img class="fixed-bottom w-100" src="../../../assets/Images/{{m.colore}}Wave.jpg">
+    <img class="fixed-bottom w-100" *ngIf="m.colore=='red'" src="../../../assets/Images/{{m.colore}}Wave.jpg">
+    <img class="fixed-bottom w-100" *ngIf="m.colore=='green'" src="../../../assets/Images/{{m.colore}}Wave.png">
   </div>
 </div>
     </div>
