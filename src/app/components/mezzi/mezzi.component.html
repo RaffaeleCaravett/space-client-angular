@@ -5,8 +5,11 @@
       <h1>Benvenuto nel nostro parco mezzi</h1>
     <p>Qui troverai tutte le informazioni di cui hai bisogno sui nostri veicoli.</p>
     </div>
-    <div class="col-md-4 p-3" *ngFor="let m of mezzi">
-<div class="border rounded p-3 shadow bg-light"></div>
+    <div class="col-md-12 p-3 " *ngFor="let m of mezzi,index as i">
+<div class="border rounded py-5 p-3 shadow bg-light personal-height position-relative overflow-hidden" style="background: url('../../../assets/Images/svg/{{m.colore}}.png');background-repeat: no-repeat;background-size: cover;">
+  <h1>Unveil the {{i+1}}° vehicle </h1>
+  <div class="vehicle-{{m.colore}} p-0 m-0"></div>
+</div>
     </div>
   </div>
 </div>

@@ -1,0 +1,25 @@
+.personal-height{
+  min-height: 80vh;
+  transition: 1s;
+
+  &:hover{
+scale: .8;
+transition: 1s;
+.vehicle{
+  transform: translateY(-100px) translateX(-250px);
+  transition: 1s;
+  height: 120%;
+  background: red;
+  width: 120%;
+}
+}
+.vehicle{
+  position: absolute;
+  transform: translateY(-2000px) translateX(-2000px);
+  transition: 1s;
+  height: 120%;
+  background: red;
+  width: 120%;
+}
+}
+
