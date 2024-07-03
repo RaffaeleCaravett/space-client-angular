@@ -42,5 +42,7 @@ localStorage.setItem('location','mezzi')
 calculateHeightLess30():number{
   return window.innerHeight-(window.innerHeight*30/100)
 }
-
+getBackground(color:string){
+  return `url("../../../assets/Images/svg/${color}.png")`
+}
 }

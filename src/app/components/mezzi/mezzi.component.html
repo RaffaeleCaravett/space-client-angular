@@ -6,8 +6,8 @@
     <p>Qui troverai tutte le informazioni di cui hai bisogno sui nostri veicoli.</p>
     </div>
     <div class="col-md-12 p-3 " *ngFor="let m of mezzi,index as i">
-<div class="border rounded py-5 p-3 shadow bg-light personal-height position-relative overflow-hidden" style="background: url('../../../assets/Images/svg/{{m.colore}}.png');background-repeat: no-repeat;background-size: cover;"
-[style]="{height:windowHeight+'px'}">
+<div class="border rounded py-5 p-3 shadow personal-height position-relative overflow-hidden"
+[style]="{height:windowHeight+'px',background: getBackground(m.colore)}">
   <h1>Unveil the {{i+1}}° vehicle </h1>
   <div class="vehicle vehicle-{{m.colore}} p-5 m-0 bg-white w-100" >
     <div class="index">
