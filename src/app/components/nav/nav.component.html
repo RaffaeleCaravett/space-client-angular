@@ -9,18 +9,38 @@
       <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="isLoggedIn" (click)="logout()">Logout</div>
       <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="!isLoggedIn">Login</div>
     </div>
-    <ng-template  #hamburger [ngOutletContext]="context">
-      <div class="row">
-        <div class="dropdown">
-          <button class="btn shadow-none dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="assets/Images/icons/hamburger.svg.png" class="w-100" [style]="{height:'100px'}" alt="">
+    <ng-template  #hamburger >
+      <div class="row hamburger">
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" class="bg-info">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span> </span>
           </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
+          <button mat-menu-item  [routerLink]="''">
+            <span>Home</span>
+          </button>
+          <button mat-menu-item [routerLink]="'/itinerari'">
+            <span>Itinerari</span>
+          </button>
+          <button mat-menu-item [routerLink]="'/spaceCrew'">
+            <span>Space crew</span>
+          </button>
+          <button mat-menu-item [routerLink]="'/mezzi'">
+            <span>Mezzi</span>
+          </button>
+          <button mat-menu-item [routerLink]="'/about'">
+            <span>About us</span>
+          </button>
+          <button mat-menu-item [routerLink]="'/auth'" *ngIf="isLoggedIn" (click)="logout()">
+            <span>Logout</span>
+          </button>
+          <button mat-menu-item [routerLink]="'/auth'" *ngIf="!isLoggedIn">
+            <span>Login</span>
+          </button>
+        </mat-menu>
       </div>
     </ng-template>
   </div>
