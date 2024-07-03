@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-mezzi',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mezzi.component.scss']
 })
 export class MezziComponent implements OnInit{
-
+windowHeight= this.calculateHeightLess30()
 mezzi:any=
 [
   {
@@ -32,5 +32,15 @@ mezzi:any=
   ngOnInit(): void {
 localStorage.setItem('location','mezzi')
   }
+
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.windowHeight=this.calculateHeightLess30()
+  }
+
+calculateHeightLess30():number{
+  return window.innerHeight-(window.innerHeight*30/100)
+}
 
 }

@@ -1,6 +1,6 @@
 <nav class="text-center p-5 bg-info sticky-top">
   <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="!showHamburger;else hamburger">
       <div class="col-md-2 fs-3" [routerLink]="''">Home</div>
       <div class="col-md-2 fs-3" [routerLink]="'/itinerari'">Itinerari</div>
       <div class="col-md-2 fs-3" [routerLink]="'/spaceCrew'">Space crew</div>
@@ -9,5 +9,19 @@
       <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="isLoggedIn" (click)="logout()">Logout</div>
       <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="!isLoggedIn">Login</div>
     </div>
+    <ng-template  #hamburger [ngOutletContext]="context">
+      <div class="row">
+        <div class="dropdown">
+          <button class="btn shadow-none dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="assets/Images/icons/hamburger.svg.png" class="w-100" [style]="{height:'100px'}" alt="">
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </div>
+      </div>
+    </ng-template>
   </div>
   </nav>

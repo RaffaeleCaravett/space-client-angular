@@ -6,9 +6,21 @@
     <p>Qui troverai tutte le informazioni di cui hai bisogno sui nostri veicoli.</p>
     </div>
     <div class="col-md-12 p-3 " *ngFor="let m of mezzi,index as i">
-<div class="border rounded py-5 p-3 shadow bg-light personal-height position-relative overflow-hidden" style="background: url('../../../assets/Images/svg/{{m.colore}}.png');background-repeat: no-repeat;background-size: cover;">
+<div class="border rounded py-5 p-3 shadow bg-light personal-height position-relative overflow-hidden" style="background: url('../../../assets/Images/svg/{{m.colore}}.png');background-repeat: no-repeat;background-size: cover;"
+[style]="{height:windowHeight+'px'}">
   <h1>Unveil the {{i+1}}° vehicle </h1>
-  <div class="vehicle-{{m.colore}} p-0 m-0"></div>
+  <div class="vehicle vehicle-{{m.colore}} p-5 m-0 bg-white w-100" >
+    <div class="index">
+      <h2>Vehicle {{i+1}}</h2>
+      <ul class="fs-5">
+        <li>Seats: 10</li>
+        <li>Speed: 100</li>
+        <li>Fuel: WTI</li>
+        <li>Captain: Jhonny Bravo</li>
+      </ul>
+    </div>
+    <img class="fixed-bottom w-100" src="../../../assets/Images/{{m.colore}}Wave.jpg">
+  </div>
 </div>
     </div>
   </div>

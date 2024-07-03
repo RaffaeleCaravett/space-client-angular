@@ -1,25 +1,39 @@
 .personal-height{
-  min-height: 80vh;
+
   transition: 1s;
+  position:relative;
 
   &:hover{
-scale: .8;
+    scale: .8;
 transition: 1s;
 .vehicle{
-  transform: translateY(-100px) translateX(-250px);
+  transform: translateY(-0px) translateX(-0px);
   transition: 1s;
-  height: 120%;
-  background: red;
-  width: 120%;
+  height: 100%;
+  .index{
+    z-index: 10!important;
+  }
+  img{
+  z-index: -1;
+}
 }
 }
 .vehicle{
   position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
   transform: translateY(-2000px) translateX(-2000px);
   transition: 1s;
-  height: 120%;
-  background: red;
-  width: 120%;
+  .index{
+    z-index: 10!important;
+  }
+  img{
+  z-index: -1;
 }
+}
+}
+ul{
+  list-style-type: none;
 }
 
