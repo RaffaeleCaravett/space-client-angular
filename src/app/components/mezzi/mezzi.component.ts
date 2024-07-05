@@ -41,7 +41,10 @@ mezzi:any=
     colore:"dark"
   },
 ]
-
+canvas1:any
+scene1!:THREE.Scene
+camera1!:THREE.PerspectiveCamera
+renderer1!:THREE.WebGLRenderer
   ngOnInit(): void {
 localStorage.setItem('location','mezzi')
 this.initScene()
