@@ -169,7 +169,7 @@ let canvases:any[] = []
 this.threeJsArray[canvases.indexOf(cv1)].scene=new THREE.Scene()
 this.threeJsArray[canvases.indexOf(cv1)].camera = new THREE.PerspectiveCamera( 75, cv1.offsetWidth / cv1.offsetHeight, 0.1, 1000 );
 this.threeJsArray[canvases.indexOf(cv1)].renderer= new THREE.WebGLRenderer()
-this.threeJsArray[canvases.indexOf(cv1)].renderer.setClearColor( '#ffffff', .5 );
+this.threeJsArray[canvases.indexOf(cv1)].renderer.setClearColor( '#ffffff', .3 );
 this.threeJsArray[canvases.indexOf(cv1)].renderer.setSize(cv1.offsetWidth ,cv1.offsetHeight);
 
 this.threeJsArray[canvases.indexOf(cv1)].camera.position.set(0,0,80)
