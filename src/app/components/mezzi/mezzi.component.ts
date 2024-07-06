@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, HostListener, OnInit } from '@angular/core';
 import * as THREE from 'three'
 
 @Component({
@@ -6,7 +6,8 @@ import * as THREE from 'three'
   templateUrl: './mezzi.component.html',
   styleUrls: ['./mezzi.component.scss']
 })
-export class MezziComponent implements OnInit{
+export class MezziComponent implements OnInit {
+
   canvas:any
 scene!:THREE.Scene
 camera!:THREE.PerspectiveCamera
@@ -42,6 +43,42 @@ mezzi:any=
   },
 ]
 canvas1:any
+
+threeJsArray:any[]=
+[
+  {
+    scene:THREE.Scene,
+camera:THREE.PerspectiveCamera,
+renderer:THREE.WebGLRenderer
+  },
+  {
+    scene:THREE.Scene,
+camera:THREE.PerspectiveCamera,
+renderer:THREE.WebGLRenderer
+  },
+  {
+    scene:THREE.Scene,
+camera:THREE.PerspectiveCamera,
+renderer:THREE.WebGLRenderer
+  },
+  {
+    scene:THREE.Scene,
+camera:THREE.PerspectiveCamera,
+renderer:THREE.WebGLRenderer
+  },
+  {
+    scene:THREE.Scene,
+camera:THREE.PerspectiveCamera,
+renderer:THREE.WebGLRenderer
+  },
+  {
+    scene:THREE.Scene,
+camera:THREE.PerspectiveCamera,
+renderer:THREE.WebGLRenderer
+  }
+]
+threeJsCheck:boolean=false
+
 scene1!:THREE.Scene
 camera1!:THREE.PerspectiveCamera
 renderer1!:THREE.WebGLRenderer
@@ -51,10 +88,6 @@ this.initScene()
   }
 
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
-    this.windowHeight=this.calculateHeightLess30()
-  }
 
 calculateHeightLess30():number{
   return window.innerHeight-(window.innerHeight*30/100)
@@ -65,7 +98,6 @@ getBackground(color:string){
 
 initScene(){
   this.canvas= document.getElementsByClassName('canvas')[0]
-
 this.scene = new THREE.Scene()
 this.camera = new THREE.PerspectiveCamera( 75, this.canvas.offsetWidth / this.canvas.offsetHeight, 0.1, 1000 );
 this.renderer= new THREE.WebGLRenderer()
@@ -126,6 +158,26 @@ for ( let p of this.pointLights){
                   this.cube1.add(p)
       }
 
+setTimeout(()=>{
+  this.canvas1= document.getElementsByClassName('canvas-card')
+console.log(this.canvas1)
+let canvases:any[] = []
+  for (let cv1 of this.canvas1){
+    canvases.push(cv1)
+    console.log(cv1.offsetWidth ,cv1.offsetHeight)
+
+this.threeJsArray[canvases.indexOf(cv1)].scene=new THREE.Scene()
+this.threeJsArray[canvases.indexOf(cv1)].camera = new THREE.PerspectiveCamera( 75, cv1.offsetWidth / cv1.offsetHeight, 0.1, 1000 );
+this.threeJsArray[canvases.indexOf(cv1)].renderer= new THREE.WebGLRenderer()
+this.threeJsArray[canvases.indexOf(cv1)].renderer.setClearColor( '#000000', 1 );
+this.threeJsArray[canvases.indexOf(cv1)].camera.position.set(0,0,80)
+
+        cv1.appendChild( this.threeJsArray[canvases.indexOf(cv1)].renderer.domElement );
+  }
+  this.threeJsCheck=true
+},3000)
+
+
 this.animate()
 }
 
@@ -133,9 +185,23 @@ animate() {
   requestAnimationFrame( ()=>this.animate() );
   this.renderer.render( this.scene, this.camera );
   this.scene.rotation.set(0.0001,0.0001,0.0001)
-this.cube.rotateY(0.001)
-this.cube1.rotateX(0.001)
+  this.cube.rotateY(0.001)
+  this.cube1.rotateX(0.001)
+
+  if(this.threeJsCheck){
+for(let i = 0; i<=5;i++){
+  this.threeJsArray[i].renderer.render(this.threeJsArray[i].scene,this.threeJsArray[i].camera )
+}
+  }
+}
+
+
+ @HostListener('window:resize', ['$event'])
+ onResize(event:any) {
+   this.windowHeight=this.calculateHeightLess30()
  }
+
+
 
 
 }
