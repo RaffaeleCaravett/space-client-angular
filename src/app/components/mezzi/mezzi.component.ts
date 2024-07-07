@@ -193,7 +193,7 @@ let canvases:any[] = []
 this.threeJsArray[canvases.indexOf(cv1)].scene=new THREE.Scene()
 this.threeJsArray[canvases.indexOf(cv1)].camera = new THREE.PerspectiveCamera( 75, cv1.offsetWidth / cv1.offsetHeight, 0.1, 1000 );
 this.threeJsArray[canvases.indexOf(cv1)].renderer= new THREE.WebGLRenderer()
-this.threeJsArray[canvases.indexOf(cv1)].renderer.setClearColor( '#ffffff', .3 );
+this.threeJsArray[canvases.indexOf(cv1)].renderer.setClearColor( '#ffffff', .001 );
 this.threeJsArray[canvases.indexOf(cv1)].renderer.setSize(cv1.offsetWidth ,cv1.offsetHeight);
 
 this.threeJsArray[canvases.indexOf(cv1)].camera.position.set(0,0,80)
@@ -208,7 +208,8 @@ this.threeJsArray[canvases.indexOf(cv1)].camera.position.set(0,0,80)
 
           this.threeJsArray[canvases.indexOf(cv1)].model.scale.set(10,10,10)
         this.threeJsArray[canvases.indexOf(cv1)].scene.add( this.threeJsArray[canvases.indexOf(cv1)].model );
-        this.threeJsArray[canvases.indexOf(cv1)].light = new THREE.AmbientLight(`#${canvases.indexOf(cv1)*canvases.indexOf(cv1)<10?canvases.indexOf(cv1)*canvases.indexOf(cv1):3+canvases.indexOf(cv1)}9ff${canvases.indexOf(cv1)*canvases.indexOf(cv1)<10?canvases.indexOf(cv1)*canvases.indexOf(cv1):3+canvases.indexOf(cv1)}9`,10)
+        this.threeJsArray[canvases.indexOf(cv1)].light = new THREE.AmbientLight(canvases.indexOf(cv1)==0?'#FF0000':canvases.indexOf(cv1)==1?'#008000':canvases.indexOf(cv1)==2?
+        '#FFFF00':canvases.indexOf(cv1)==3?'#ADD8E6':canvases.indexOf(cv1)==4?'#FFB6C1':canvases.indexOf(cv1)==5?'0x000000':'0xffffff',10)
         this.threeJsArray[canvases.indexOf(cv1)].scene.add(this.threeJsArray[canvases.indexOf(cv1)].light)
         this.threeJsArray[canvases.indexOf(cv1)].orbit = new OrbitControls(this.threeJsArray[canvases.indexOf(cv1)].camera,this.threeJsArray[canvases.indexOf(cv1)].renderer.domElement)
         this.threeJsArray[canvases.indexOf(cv1)].orbit.update()
