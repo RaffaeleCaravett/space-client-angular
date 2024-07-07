@@ -1,5 +1,7 @@
 import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, HostListener, OnInit } from '@angular/core';
 import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 @Component({
   selector: 'app-mezzi',
@@ -49,32 +51,56 @@ threeJsArray:any[]=
   {
     scene:THREE.Scene,
 camera:THREE.PerspectiveCamera,
-renderer:THREE.WebGLRenderer
+renderer:THREE.WebGLRenderer,
+loader:GLTFLoader,
+model:null,
+light:THREE.AmbientLight,
+orbit:OrbitControls
   },
   {
     scene:THREE.Scene,
-camera:THREE.PerspectiveCamera,
-renderer:THREE.WebGLRenderer
+    camera:THREE.PerspectiveCamera,
+    renderer:THREE.WebGLRenderer,
+    loader:GLTFLoader,
+    model:null,
+    light:THREE.AmbientLight,
+    orbit:OrbitControls
   },
   {
     scene:THREE.Scene,
-camera:THREE.PerspectiveCamera,
-renderer:THREE.WebGLRenderer
+    camera:THREE.PerspectiveCamera,
+    renderer:THREE.WebGLRenderer,
+    loader:GLTFLoader,
+    model:null,
+    light:THREE.AmbientLight,
+    orbit:OrbitControls
   },
   {
     scene:THREE.Scene,
-camera:THREE.PerspectiveCamera,
-renderer:THREE.WebGLRenderer
+    camera:THREE.PerspectiveCamera,
+    renderer:THREE.WebGLRenderer,
+    loader:GLTFLoader,
+    model:null,
+    light:THREE.AmbientLight,
+    orbit:OrbitControls
   },
   {
     scene:THREE.Scene,
-camera:THREE.PerspectiveCamera,
-renderer:THREE.WebGLRenderer
+    camera:THREE.PerspectiveCamera,
+    renderer:THREE.WebGLRenderer,
+    loader:GLTFLoader,
+    model:null,
+    light:THREE.AmbientLight,
+    orbit:OrbitControls
   },
   {
     scene:THREE.Scene,
-camera:THREE.PerspectiveCamera,
-renderer:THREE.WebGLRenderer
+    camera:THREE.PerspectiveCamera,
+    renderer:THREE.WebGLRenderer,
+    loader:GLTFLoader,
+    model:null,
+    light:THREE.AmbientLight,
+    orbit:OrbitControls
   }
 ]
 threeJsCheck:boolean=false
@@ -160,11 +186,9 @@ for ( let p of this.pointLights){
 
 setTimeout(()=>{
   this.canvas1= document.getElementsByClassName('canvas-card')
-console.log(this.canvas1)
 let canvases:any[] = []
   for (let cv1 of this.canvas1){
     canvases.push(cv1)
-    console.log(cv1.offsetWidth ,cv1.offsetHeight)
 
 this.threeJsArray[canvases.indexOf(cv1)].scene=new THREE.Scene()
 this.threeJsArray[canvases.indexOf(cv1)].camera = new THREE.PerspectiveCamera( 75, cv1.offsetWidth / cv1.offsetHeight, 0.1, 1000 );
@@ -175,8 +199,24 @@ this.threeJsArray[canvases.indexOf(cv1)].renderer.setSize(cv1.offsetWidth ,cv1.o
 this.threeJsArray[canvases.indexOf(cv1)].camera.position.set(0,0,80)
 
         cv1.appendChild( this.threeJsArray[canvases.indexOf(cv1)].renderer.domElement );
-  }
-  this.threeJsCheck=true
+
+        this.threeJsArray[canvases.indexOf(cv1)].loader = new GLTFLoader()
+
+        this.threeJsArray[canvases.indexOf(cv1)].loader.load( '../../../assets/models/helicopter_space_ship.glb', ( gltf:any )=> {
+
+          this.threeJsArray[canvases.indexOf(cv1)].model = gltf.scene;
+
+          this.threeJsArray[canvases.indexOf(cv1)].model.scale.set(10,10,10)
+        this.threeJsArray[canvases.indexOf(cv1)].scene.add( this.threeJsArray[canvases.indexOf(cv1)].model );
+        this.threeJsArray[canvases.indexOf(cv1)].light = new THREE.AmbientLight(`#${canvases.indexOf(cv1)*canvases.indexOf(cv1)<10?canvases.indexOf(cv1)*canvases.indexOf(cv1):3+canvases.indexOf(cv1)}9ff${canvases.indexOf(cv1)*canvases.indexOf(cv1)<10?canvases.indexOf(cv1)*canvases.indexOf(cv1):3+canvases.indexOf(cv1)}9`,10)
+        this.threeJsArray[canvases.indexOf(cv1)].scene.add(this.threeJsArray[canvases.indexOf(cv1)].light)
+        this.threeJsArray[canvases.indexOf(cv1)].orbit = new OrbitControls(this.threeJsArray[canvases.indexOf(cv1)].camera,this.threeJsArray[canvases.indexOf(cv1)].renderer.domElement)
+        this.threeJsArray[canvases.indexOf(cv1)].orbit.update()
+        setTimeout(()=>{
+          this.threeJsCheck=true
+        },1000)
+      })
+      }
 },3000)
 
 
@@ -193,6 +233,7 @@ animate() {
   if(this.threeJsCheck){
 for(let i = 0; i<=5;i++){
   this.threeJsArray[i].renderer.render(this.threeJsArray[i].scene,this.threeJsArray[i].camera )
+  this.threeJsArray[i].orbit.update()
 }
   }
 }
