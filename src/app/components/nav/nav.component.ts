@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class NavComponent implements OnInit{
 showHamburger:boolean=false
-
+background:string = ''
 constructor(private authGuard:AuthGuard,private authService:AuthService,private router:Router){
 this.authService.isAuthenticated.subscribe((boolean:boolean)=>{
   this.isLoggedIn=boolean

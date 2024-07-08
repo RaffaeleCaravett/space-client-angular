@@ -40,6 +40,9 @@
           <button mat-menu-item [routerLink]="'/auth'" *ngIf="!isLoggedIn">
             <span>Login</span>
           </button>
+          <button class="btn" *ngIf="background=='bg-white'else light">Dark mode</button>
+          <ng-template #light>          <button class="btn" *ngIf="background=='bg-white'else light">Light mode</button>
+          </ng-template>
         </mat-menu>
       </div>
     </ng-template>
