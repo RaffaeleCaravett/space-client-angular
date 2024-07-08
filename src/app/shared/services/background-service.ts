@@ -6,13 +6,13 @@ import { Injectable } from "@angular/core";
 })
 export class BackgroundService{
 
-  public isAuthenticated:BehaviorSubject<string> = new BehaviorSubject<string>('bg-white');
+  public bgClass:BehaviorSubject<string> = new BehaviorSubject<string>('bg-white');
 
 
   constructor(){}
 
   updateBg(bg:string){
-  this.isAuthenticated.next(bg);
+  this.bgClass.next(bg);
   }
 
   }
