@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as Aos from 'aos'
-import { AuthService } from './shared/auth.service';
+import { AuthService } from './shared/services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({

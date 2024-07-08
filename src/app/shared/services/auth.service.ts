@@ -1,7 +1,7 @@
 import { BehaviorSubject } from "rxjs";
-import { AuthGuard } from "../core/auth.guard";
+import { AuthGuard } from "../../core/auth.guard";
 import { HttpClient } from "@angular/common/http";
-import { environment } from "../core/environment";
+import { environment } from "../../core/environment";
 import { Injectable } from "@angular/core";
 
 @Injectable({
