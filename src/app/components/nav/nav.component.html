@@ -8,6 +8,12 @@
       <div class="col-md-2 fs-3" [routerLink]="'/about'">About us</div>
       <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="isLoggedIn" (click)="logout()">Logout</div>
       <div class="col-md-2 fs-3" [routerLink]="'/auth'" *ngIf="!isLoggedIn">Login</div>
+      <div class="d-flex justify-content-end py-3">
+        <button class="btn" *ngIf="background=='bg-white'else light">Dark mode</button>
+        <ng-template #light>
+          <button class="btn">Light mode</button>
+        </ng-template>
+      </div>
     </div>
     <ng-template  #hamburger >
       <div class="row hamburger">
@@ -40,6 +46,7 @@
           <button mat-menu-item [routerLink]="'/auth'" *ngIf="!isLoggedIn">
             <span>Login</span>
           </button>
+          {{background}}
           <button class="btn" *ngIf="background=='bg-white'else light">Dark mode</button>
           <ng-template #light>          <button class="btn" *ngIf="background=='bg-white'else light">Light mode</button>
           </ng-template>
