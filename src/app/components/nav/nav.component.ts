@@ -24,6 +24,10 @@ this.backgroundService.bgClass.subscribe((bg:string)=>{
 
 isLoggedIn:any
 
+changeBg(bg:string){
+  this.backgroundService.bgClass.next(bg)
+}
+
 ngOnInit(){
   if(window.innerWidth <=768){
     this.showHamburger=true;
