@@ -2,19 +2,19 @@
   <div class="row position-relative">
     <div class="canvas-background w-100"></div>
   </div>
-  <div class="container">
-    <div class="row py-5 p-0">
+  <div class="p-5 {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
+    <div class="row p-5 ">
     <div class="col-md-12 py-5">
-      <h1>Space Agency®</h1>
+      <p class="title fs-1">Space Agency®</p>
     </div>
     </div>
   </div>
-  <div class="row py-5 p-0">
+  <div class="row py-5 p-0 {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
     <div class="col-lg-3 col-sm-6 col-12 p-5 images" *ngFor="let i of images">
       <div class="p-5 position-relative" >
       <img src="{{i}}" alt="" class="w-100">
       <div class="position-absolute top-0 start-50 translate-middle-x">
-<h2 >Some title</h2>
+<h2 class="title">Some title</h2>
       <p class="smaller">
   Some text just ot see few words one close to another and read some .
 </p>
@@ -37,14 +37,14 @@
     </div>
     <img src="../../../assets/Images/redWave.jpg" alt="" class="w-100 svg rotate">
   </div>
-  <div class="container">
-    <div class="row py-5 p-0">
+  <div class="p-5 {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
+    <div class="row p-5">
     <div class="col-md-12 py-3">
       <h1>A lot of itinerary</h1>
     </div>
       <div class="row px-3">
        <div class="col-lg-3 col-md-4 col-sm-6 p-2" *ngFor="let n of numbers">
-      <div class="border shadow-lg rounded card bg text-dark overflow-hidden position-relative">
+      <div class="border shadow-lg rounded card  {{background=='bg-white'?'bg-dark text-white':'bg-white text-dark'}} overflow-hidden position-relative">
         <img src="../../../assets/Images/card.png" alt="" class="rounded-top w-100 planet">
         <p class="rounded-top w-100 rocket position-absolute top-0 fs-1">Planet name</p>
         <p class="fs-4">Title</p>
@@ -60,10 +60,10 @@
     </div>
     </div>
   </div>
-    <div class="row py-5 p-0">
+    <div class="row py-5 p-0 {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
       <img src="../../../assets/Images/yellowWave.avif" alt="" class="w-100 pt-5 svg mt-5">
     <div class="col-md-12 py-5 d-flex justify-content-center" style="background: rgb(255, 189, 8);" >
-      <div class="rounded"  *ngFor="let l of name;index as i">
+      <div class="rounded letters"  *ngFor="let l of name;index as i">
         <div class="border shadow bg-light rounded translate{{i}}" [ngClass]="i<=4?'right':'left'">
           <h1>{{l}}</h1>
         </div>
@@ -71,8 +71,8 @@
     </div>
     <img src="../../../assets/Images/yellowWave.avif" alt="" class="w-100 svg rotate">
     </div>
-    <div class="container">
-      <div class="row py-5 p-0">
+    <div class="p-5 {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
+      <div class="row p-5">
     <div class="col-md-6 py-5 my-5">
 <h1>Our team</h1>
 <p class="fs-4" data-aos="zoom-out" data-aos-duration="3000">Some random text to explain the validity of our team, and why it will bring you in

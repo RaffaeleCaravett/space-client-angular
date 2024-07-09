@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { BackgroundService } from 'src/app/shared/services/background-service';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
@@ -23,8 +24,17 @@ scene = new THREE.Scene()
   renderer = new THREE.WebGLRenderer();
   loader = new GLTFLoader()
   model:any;
+  background!:string
+
+  constructor(private backgroundService:BackgroundService){
+    this.backgroundService.bgClass.subscribe((bg:string)=>{
+      this.background=bg
+    })
+    }
+
 
   ngOnInit(): void {
+    localStorage.setItem('location',' ')
     this.render()
   }
 
@@ -35,7 +45,7 @@ this.camera = new THREE.PerspectiveCamera( 60, this.canvas.offsetWidth / this.ca
 this.camera.position.set(0, 0, 1);
 this.renderer = new THREE.WebGLRenderer({ antialias: true});
 this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
-this.renderer.setClearColor( 0x000000, 0);
+this.renderer.setClearColor( 0x000000, .0001);
 
 
 this.canvas.appendChild( this.renderer.domElement);
