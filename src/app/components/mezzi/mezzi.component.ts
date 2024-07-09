@@ -2,6 +2,7 @@ import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, Hos
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { BackgroundService } from 'src/app/shared/services/background-service';
 
 @Component({
   selector: 'app-mezzi',
@@ -23,6 +24,7 @@ geometry1!:THREE.BoxGeometry
 material1!:THREE.MeshBasicMaterial
 cube1!:THREE.Mesh
 windowHeight= this.calculateHeightLess30()
+background!:string
 mezzi:any=
 [
   {
@@ -108,6 +110,14 @@ threeJsCheck:boolean=false
 scene1!:THREE.Scene
 camera1!:THREE.PerspectiveCamera
 renderer1!:THREE.WebGLRenderer
+
+
+constructor(private backgroundService:BackgroundService){
+this.backgroundService.bgClass.subscribe((bg:string)=>{
+  this.background=bg
+})
+}
+
   ngOnInit(): void {
 localStorage.setItem('location','mezzi')
 this.initScene()

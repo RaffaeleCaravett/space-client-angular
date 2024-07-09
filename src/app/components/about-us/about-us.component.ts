@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackgroundService } from 'src/app/shared/services/background-service';
 import * as THREE from 'three'
 @Component({
   selector: 'app-about-us',
@@ -20,6 +21,14 @@ cube!:THREE.Mesh
 geometry1!:THREE.BoxGeometry
 material1!:THREE.MeshBasicMaterial
 cube1!:THREE.Mesh
+background!:string
+
+constructor(private backgroundService:BackgroundService){
+  this.backgroundService.bgClass.subscribe((bg:string)=>{
+    this.background=bg
+  })
+  }
+
 ngOnInit(): void {
   localStorage.setItem('location','about')
 this.initScene()
@@ -32,7 +41,7 @@ this.scene = new THREE.Scene()
 this.camera = new THREE.PerspectiveCamera( 75, this.canvas.offsetWidth / this.canvas.offsetHeight, 0.1, 1000 );
 this.renderer= new THREE.WebGLRenderer()
 this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight );
-this.renderer.setClearColor( 0xffffff, 1 );
+this.renderer.setClearColor( 0xffffff, .001 );
 this.camera.position.set(0,0,80)
 
 this.canvas.appendChild( this.renderer.domElement );

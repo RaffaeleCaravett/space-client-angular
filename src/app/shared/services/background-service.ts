@@ -6,7 +6,7 @@ import { Injectable } from "@angular/core";
 })
 export class BackgroundService{
 
-  public bgClass:BehaviorSubject<string> = new BehaviorSubject<string>('bg-dark');
+  public bgClass:BehaviorSubject<string> = new BehaviorSubject<string>('bg-white');
 
 
   constructor(){}

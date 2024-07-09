@@ -1,4 +1,4 @@
-<div class="position-relative p-0 m-0 text-center">
+<div class="position-relative p-0 m-0 text-center {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
   <div class="canvas fixed-top w-100"></div>
 <div class="container py-5">
   <div class="row py-5">
@@ -10,7 +10,7 @@
 <div class="border rounded py-5 p-3 shadow personal-height position-relative overflow-hidden"
 [style]="{height:windowHeight+'px',background: getBackground(m.colore),backgroundRepeat:'no-repeat',backgroundSize:'cover'}">
   <h1>Unveil the {{i+1}}° vehicle </h1>
-  <div class="vehicle vehicle-{{m.colore}} p-5 bg-white m-0 w-100 position-relative">
+  <div class="vehicle vehicle-{{m.colore}} p-5 {{background}} m-0 w-100 position-relative">
     <div class="index">
       <h2>Vehicle {{i+1}}</h2>
       <ul class="fs-5 text-start">
