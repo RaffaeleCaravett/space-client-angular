@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import { BackgroundService } from 'src/app/shared/services/background-service';
 import * as THREE from 'three'
 @Component({
   selector: 'app-auth-forms',
@@ -27,7 +28,12 @@ cube!:THREE.Mesh
 geometry1!:THREE.BoxGeometry
 material1!:THREE.MeshBasicMaterial
 cube1!:THREE.Mesh
-constructor(private authService:AuthService,private router:Router){}
+background:string =''
+constructor(private authService:AuthService,private router:Router,private backgroundService:BackgroundService){
+  this.backgroundService.bgClass.subscribe((bg:string)=>{
+    this.background=bg
+  })
+}
 
 
 ngOnInit(): void {
@@ -143,7 +149,7 @@ signUp(){
   this.camera = new THREE.PerspectiveCamera( 75, this.canvas.offsetWidth / this.canvas.offsetHeight, 0.1, 1000 );
   this.renderer= new THREE.WebGLRenderer()
   this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight );
-  this.renderer.setClearColor( 0xffffff, 1 );
+  this.renderer.setClearColor( 0xffffff, .001 );
   this.camera.position.set(0,0,80)
 
   this.canvas.appendChild( this.renderer.domElement );

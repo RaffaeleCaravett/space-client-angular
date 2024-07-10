@@ -1,4 +1,4 @@
-<div class="position-relative p-0 m-0">
+<div class="position-relative p-0 m-0 {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
   <div class="canvas fixed-top w-100"></div>
 <div class="container text-center py-5">
   <div class="row py-5" *ngIf="section=='login'">
@@ -19,7 +19,7 @@
 </div>
 <hr>
 <p class="fs-5">or</p>
-<button class="btn my-3" (click)="section='signup'">Signup</button>
+<button class="btn my-3 width {{background=='bg-white'?'btn-dark':'btn-light'}}" (click)="section='signup'">Signup</button>
   </div>
   <div class="row py-5" *ngIf="section=='signup'">
     <h1>Signup</h1>
@@ -48,7 +48,7 @@
     </div>
     <hr>
     <p class="fs-5">or</p>
-    <button class="btn my-3" (click)="section='login'">Login</button>
+    <button class="btn my-3 width {{background=='bg-white'?'btn-dark':'btn-light'}}" (click)="section='login'">Login</button>
   </div>
 </div>
 </div>
