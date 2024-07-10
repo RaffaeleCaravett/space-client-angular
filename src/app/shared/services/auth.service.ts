@@ -20,7 +20,7 @@ export class AuthService{
   authenticateUser(bool:boolean){
   this.authGuard.authenticateUser(bool)
   this.isAuthenticated.next(bool);
-  this.token=localStorage.getItem('accessToken'||'')!
+  this.token=localStorage.getItem('accessTokenSpaceUser'||'')!
   }
   signUp(user:{}){
     return this.http.post(environment.API_URL + this.auth +this.register, user);

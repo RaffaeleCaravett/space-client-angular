@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BackgroundService } from 'src/app/shared/services/background-service';
+import { ItinerariService } from 'src/app/shared/services/itinerari.service';
 
 @Component({
   selector: 'app-itinerari',
@@ -9,7 +10,7 @@ import { BackgroundService } from 'src/app/shared/services/background-service';
 export class ItinerariComponent implements OnInit{
 background:string =''
 
-constructor(private backgroundService:BackgroundService){
+constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService){
   this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
   })
@@ -17,6 +18,9 @@ constructor(private backgroundService:BackgroundService){
 
 ngOnInit(): void {
 localStorage.setItem('location','itinerari')
+this.itinerariService.getAllPaginated().subscribe((datas)=>{
+  console.log(datas)
+})
 }
 
 }
