@@ -17,7 +17,6 @@ this.authService.isAuthenticated.subscribe((boolean:boolean)=>{
   this.isLoggedIn=boolean
 })
 this.backgroundService.bgClass.subscribe((bg:string)=>{
-  console.log(bg)
   this.background=bg
 })
 }

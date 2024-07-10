@@ -18,18 +18,22 @@ images:string[]= ['../../../assets/Images/icons/team.svg','../../../assets/Image
 canvas :any;
 
 
-
 scene = new THREE.Scene()
   camera = new THREE.PerspectiveCamera()
   renderer = new THREE.WebGLRenderer();
   loader = new GLTFLoader()
   model:any;
   background!:string
+  clock = new THREE.Clock();
 
   constructor(private backgroundService:BackgroundService){
     this.backgroundService.bgClass.subscribe((bg:string)=>{
       this.background=bg
-      this.render()
+      if(bg&&bg=='bg-dark'){
+        this.renderer.setClearColor( 0x000000, .9);
+      }else{
+        this.renderer.setClearColor( 0xffffff, .9);
+      }
     })
     }
 
@@ -40,41 +44,41 @@ scene = new THREE.Scene()
   }
 
 render(){
-  console.log('called')
+
 this.canvas = document.getElementsByClassName('canvas-background')[0];
 this.scene = new THREE.Scene()
 this.camera = new THREE.PerspectiveCamera( 60, this.canvas?.offsetWidth / this.canvas?.offsetHeight, 1, 1000,)
 this.camera.position.set(0, 0, 1);
 this.renderer = new THREE.WebGLRenderer({ antialias: true});
 this.renderer.setSize(this.canvas?.offsetWidth, this.canvas?.offsetHeight);
-console.log(this.background)
-if(this.background=='bg-white'){
-  this.renderer.setClearColor( 0x000000, 1);
 
+if(this.background&&this.background=='bg-dark'){
+  console.log(1)
+  this.renderer.setClearColor( 0x000000, .9);
 }else{
-  this.renderer.setClearColor( 0xffffff, 1);
+  console.log(2)
+  this.renderer.setClearColor( 0xffffff, .9);
 }
 
 this.canvas?.appendChild( this.renderer.domElement);
 
 
 this.loader.load( '../../../assets/models/planet_earth.glb', ( gltf:any )=> {
-
   this.model = gltf.scene;
 
 this.model.scale.set(.1,.1,.1)
 this.scene.add( this.model );
 const light = new THREE.AmbientLight(0x404040,100000)
 this.scene.add(light)
+
 this.animate()
 }, undefined, function ( error ) { console.error( error ); });
 }
 
 animate() {
 	requestAnimationFrame( ()=>this.animate() );
-	this.renderer.render( this.scene, this.camera );
-  this.camera.updateProjectionMatrix();
- }
+	this.renderer?.render( this.scene, this.camera );
+}
 
 
  @HostListener('window:resize', ['$event'])
