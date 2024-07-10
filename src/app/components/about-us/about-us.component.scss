@@ -16,5 +16,11 @@ transform: translateY(-1000px);
 .canvas{
   height: 100vh;
   z-index: 3;
+  pointer-events: none;
 }
+}
+h1{
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
