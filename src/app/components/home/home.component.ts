@@ -29,6 +29,7 @@ scene = new THREE.Scene()
   constructor(private backgroundService:BackgroundService){
     this.backgroundService.bgClass.subscribe((bg:string)=>{
       this.background=bg
+      this.render()
     })
     }
 
@@ -39,16 +40,22 @@ scene = new THREE.Scene()
   }
 
 render(){
+  console.log('called')
 this.canvas = document.getElementsByClassName('canvas-background')[0];
 this.scene = new THREE.Scene()
-this.camera = new THREE.PerspectiveCamera( 60, this.canvas.offsetWidth / this.canvas.offsetHeight, 1, 1000,)
+this.camera = new THREE.PerspectiveCamera( 60, this.canvas?.offsetWidth / this.canvas?.offsetHeight, 1, 1000,)
 this.camera.position.set(0, 0, 1);
 this.renderer = new THREE.WebGLRenderer({ antialias: true});
-this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
-this.renderer.setClearColor( 0x000000, .0001);
+this.renderer.setSize(this.canvas?.offsetWidth, this.canvas?.offsetHeight);
+console.log(this.background)
+if(this.background=='bg-white'){
+  this.renderer.setClearColor( 0x000000, 1);
 
+}else{
+  this.renderer.setClearColor( 0xffffff, 1);
+}
 
-this.canvas.appendChild( this.renderer.domElement);
+this.canvas?.appendChild( this.renderer.domElement);
 
 
 this.loader.load( '../../../assets/models/planet_earth.glb', ( gltf:any )=> {
@@ -66,6 +73,7 @@ this.animate()
 animate() {
 	requestAnimationFrame( ()=>this.animate() );
 	this.renderer.render( this.scene, this.camera );
+  this.camera.updateProjectionMatrix();
  }
 
 

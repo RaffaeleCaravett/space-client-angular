@@ -291,7 +291,7 @@ color: white!important;
 height: 90vh;
 position: fixed;
 top: 100px;
-z-index: 4;
+z-index: -1;
 }
 @media screen and (max-width:768px) {
   .canvas-background{
@@ -300,11 +300,4 @@ z-index: 4;
 }
 .smaller{
   font-size:smaller;
-    z-index:10!important;
-}
-.title{
-    z-index:10!important;
-}
-.col-md-6,.col-lg-3, .col-md-4, .col-sm-6, .letters, .col-lg-4,.col-md-12, .col-12{
-    z-index:10!important;
 }
