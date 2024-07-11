@@ -9,7 +9,7 @@ import { ItinerariService } from 'src/app/shared/services/itinerari.service';
 })
 export class ItinerariComponent implements OnInit{
 background:string =''
-
+pacchetti:any[]=[]
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService){
   this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
