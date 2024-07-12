@@ -9,6 +9,16 @@
     <div class="col-md-12 p-3 fs-3 text-end">
       <span class="border shadow-sm bg-light rounded-circle p-2">{{item.prezzo +"€"}}</span>
     </div>
+    <div class="col-md-12 py-3">
+      <p class="fs-2">Un entusiasmante viaggio sul </p>
+    </div>
+    <div class="col-md-12 py-3 d-flex justify-content-center" *ngFor="let p of item.pianetas">{{p.nome}}</div>
+    <div class="col-md-12">
+      <p class="px-5 py-2 border-bottom border-top">
+        <span>Dal {{item.da}} - </span>
+        <span>Al {{item.a}}</span>
+      </p>
+    </div>
   </div>
 </div>
     </div>
