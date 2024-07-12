@@ -12,9 +12,13 @@
     <div class="col-md-12 py-3">
       <p class="fs-2">Un entusiasmante viaggio sul </p>
     </div>
-    <div class="col-md-12 py-3 d-flex justify-content-center" *ngFor="let p of item.pianetas">{{p.nome}}</div>
+    <div class="col-md-12 fs-3 py-3 d-flex justify-content-center" *ngFor="let p of item.pianetas">{{p.nome}}</div>
+    <hr>
     <div class="col-md-12">
-      <p class="px-5 py-2 border-bottom border-top">
+      <p class="fs-2">Per {{item.posti}}</p>
+    </div>
+    <div class="col-md-12">
+      <p class="px-5 py-2 shadow border-bottom border-top">
         <span>Dal {{item.da}} - </span>
         <span>Al {{item.a}}</span>
       </p>
