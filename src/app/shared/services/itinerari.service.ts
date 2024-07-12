@@ -14,9 +14,9 @@ export class ItinerariService{
 
 getAllPaginated(page?:number){
   if(!page){
-return this.http.get(this.api_url+this.itinerari)
+return this.http.get(this.api_url+this.itinerari+`/paginated?page=0`)
   }else{
-    return this.http.get(this.api_url+this.itinerari+`?page=${page}`)
+    return this.http.get(this.api_url+this.itinerari+`/paginated?page=${page}`)
 
   }
 }

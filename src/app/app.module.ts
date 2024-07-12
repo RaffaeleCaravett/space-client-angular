@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -17,7 +17,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 import { TokenInterceptor } from './core/token.interceptor';
+import { provideToastr, ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,13 @@ import { TokenInterceptor } from './core/token.interceptor';
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    MatDialogModule
   ],
   providers: [
+    provideAnimations(),
+    provideToastr(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
