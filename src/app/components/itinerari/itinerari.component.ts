@@ -14,6 +14,7 @@ background:string =''
 pacchetti:any
 idChecked!:number
 disponibility:string=''
+colorChecked:string=''
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
   this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
@@ -27,6 +28,7 @@ this.itinerariService.getAllPaginated().subscribe(
     next:(datas)=>{
  this.pacchetti=datas
  console.log(this.pacchetti)
+
 },
 error:(err)=>{
 this.ngxToast.error(err.message||"Qualcosa è andato storto nel recupero dei pacchetti.")
@@ -41,8 +43,14 @@ calculateReservationbAvailable(pacchettoId:number, posti:number){
 if(pacchettoId&&pacchettoId!=0){
   this.prenotazioniService.getByPacchettoId(pacchettoId).subscribe({
     next:(data:any)=>{
-this.disponibility= "Sono disponibili ancora " + `${posti-data.length}` + " posti per questa destinazione."
+this.disponibility= `Sono disponibili ancora ${posti-data.length} posti su ${posti} per questa destinazione.`
 this.idChecked=pacchettoId;
+let disponibilità=posti-data.length
+if(disponibilità<=4){
+  this.colorChecked='text-red'
+}else{
+  this.colorChecked='text-success'
+}
 },
     error:(err:any)=>{
 this.ngxToast.error(err.message||"Qualcosa è andato storto nell'elaborazione della richiesta.")

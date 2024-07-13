@@ -21,11 +21,11 @@
     <div class="col-md-12 fs-3 py-3 d-flex justify-content-center" *ngFor="let p of item.pianetas">{{p.nome}}</div>
     <hr>
     <div class="col-md-12">
-        <button class="btn" (click)="calculateReservationbAvailable(item.id)">
+        <button class="btn" (click)="calculateReservationbAvailable(item.id,item.prezzo)">
           Controlla disponibilità
         </button>
-        <p class="fs-4" *ngIf="idChecked && idChecked == item.id">
-
+        <p class="fs-4 {{colorChecked}}" *ngIf="idChecked && idChecked == item.id">
+{{disponibility}}
       </p>
     </div>
   </div>
