@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BackgroundService } from 'src/app/shared/services/background-service';
 import { ItinerariService } from 'src/app/shared/services/itinerari.service';
+import { PrenotazioniService } from 'src/app/shared/services/prenotazioni.service';
 
 @Component({
   selector: 'app-itinerari',
@@ -11,7 +12,9 @@ import { ItinerariService } from 'src/app/shared/services/itinerari.service';
 export class ItinerariComponent implements OnInit{
 background:string =''
 pacchetti:any
-constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService){
+idChecked!:number
+disponibility:string=''
+constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
   this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
   })
@@ -32,6 +35,21 @@ complete:()=>{
 
 }
 })
+}
+
+calculateReservationbAvailable(pacchettoId:number, posti:number){
+if(pacchettoId&&pacchettoId!=0){
+  this.prenotazioniService.getByPacchettoId(pacchettoId).subscribe({
+    next:(data:any)=>{
+this.disponibility= "Sono disponibili ancora " + `${posti-data.length}` + " posti per questa destinazione."
+this.idChecked=pacchettoId;
+},
+    error:(err:any)=>{
+this.ngxToast.error(err.message||"Qualcosa è andato storto nell'elaborazione della richiesta.")
+    },
+    complete:()=>{}
+  })
+}
 }
 
 }
