@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { BackgroundService } from 'src/app/shared/services/background-service';
 import * as THREE from 'three'
 @Component({
@@ -6,7 +6,7 @@ import * as THREE from 'three'
   templateUrl: './about-us.component.html',
   styleUrls: ['./about-us.component.scss']
 })
-export class AboutUsComponent implements OnInit{
+export class AboutUsComponent implements OnInit, OnDestroy{
 stars:number[]=[1,2,3,4,5]
 cards:string[]=['','','']
 canvas:any
@@ -31,7 +31,9 @@ constructor(private backgroundService:BackgroundService){
 
 ngOnInit(): void {
   localStorage.setItem('location','about')
-this.initScene()
+  setTimeout(()=>{
+    this.initScene()
+  },1000)
 }
 
 initScene(){
@@ -106,5 +108,17 @@ animate() {
   this.scene.rotation.set(0.0001,0.0001,0.0001)
 this.cube.rotateY(0.001)
 this.cube1.rotateX(0.001)
+ }
+ @HostListener('window:resize', ['$event'])
+ onResize(event:any) {
+
+  this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
+   this.camera.aspect = this.canvas.offsetWidth/ this.canvas.offsetHeight;
+		this.camera.updateProjectionMatrix();
+    this.renderer.render(this.scene, this.camera);
+ }
+
+ ngOnDestroy(){
+  this.backgroundService.bgClass.unsubscribe()
  }
 }
