@@ -22,9 +22,9 @@ geometry1!:THREE.BoxGeometry
 material1!:THREE.MeshBasicMaterial
 cube1!:THREE.Mesh
 background!:string
-
+back:any
 constructor(private backgroundService:BackgroundService){
-  this.backgroundService.bgClass.subscribe((bg:string)=>{
+ this.back=this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
   })
   }
@@ -119,6 +119,8 @@ this.cube1.rotateX(0.001)
  }
 
  ngOnDestroy(){
-  this.backgroundService.bgClass.unsubscribe()
+  this.back.unsubscribe()
+  this.scene.clear()
+  this.renderer.clear()
  }
 }

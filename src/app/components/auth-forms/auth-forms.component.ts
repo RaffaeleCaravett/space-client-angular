@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services/auth.service';
@@ -9,7 +9,7 @@ import * as THREE from 'three'
   templateUrl: './auth-forms.component.html',
   styleUrls: ['./auth-forms.component.scss']
 })
-export class AuthFormsComponent  implements OnInit{
+export class AuthFormsComponent  implements OnInit,OnDestroy{
 
 section:string=''
 loginForm!:FormGroup
@@ -29,8 +29,9 @@ geometry1!:THREE.BoxGeometry
 material1!:THREE.MeshBasicMaterial
 cube1!:THREE.Mesh
 background:string =''
+back:any
 constructor(private authService:AuthService,private router:Router,private backgroundService:BackgroundService){
-  this.backgroundService.bgClass.subscribe((bg:string)=>{
+this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
   })
 }
@@ -215,5 +216,17 @@ signUp(){
   this.cube.rotateY(0.001)
   this.cube1.rotateX(0.001)
    }
+   @HostListener('window:resize', ['$event'])
+   onResize(event:any) {
 
+    this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
+     this.camera.aspect = this.canvas.offsetWidth/ this.canvas.offsetHeight;
+      this.camera.updateProjectionMatrix();
+      this.renderer.render(this.scene, this.camera);
+   }
+   ngOnDestroy(){
+    this.back.unsubscribe()
+    this.scene.clear()
+    this.renderer.clear()
+   }
 }

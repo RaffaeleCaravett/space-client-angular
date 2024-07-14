@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { BackgroundService } from 'src/app/shared/services/background-service';
 import { ItinerariService } from 'src/app/shared/services/itinerari.service';
@@ -9,7 +9,7 @@ import * as THREE from 'three'
   templateUrl: './itinerari.component.html',
   styleUrls: ['./itinerari.component.scss']
 })
-export class ItinerariComponent implements OnInit{
+export class ItinerariComponent implements OnInit, OnDestroy{
 background:string =''
 pacchetti:any
 idChecked!:number
@@ -27,10 +27,10 @@ cube:any
 cube1:any
 pointLights:any[]=[]
 pointLights1:any[]=[]
-
+back:any
 
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
-  this.backgroundService.bgClass.subscribe((bg:string)=>{
+ this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
   })
 }
@@ -155,5 +155,9 @@ this.cube1.rotateX(0.001)
 		this.camera.updateProjectionMatrix();
     this.renderer.render(this.scene, this.camera);
  }
-
+ ngOnDestroy(){
+  this.back.unsubscribe()
+  this.scene.clear()
+  this.renderer.clear()
+ }
 }

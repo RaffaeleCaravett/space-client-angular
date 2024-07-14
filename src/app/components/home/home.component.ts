@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { BackgroundService } from 'src/app/shared/services/background-service';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
@@ -8,7 +8,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit,OnDestroy{
 numbers:number[]=[1,2,3,4,5,6,7,8]
 numbers1:number[]=[1,2,3]
 name:string[]=['S','P','A','C','E',' ','A','G','E','N','C','Y']
@@ -25,9 +25,9 @@ scene = new THREE.Scene()
   model:any;
   background!:string
   clock = new THREE.Clock();
-
+  back:any
   constructor(private backgroundService:BackgroundService){
-    this.backgroundService.bgClass.subscribe((bg:string)=>{
+   this.back=this.backgroundService.bgClass.subscribe((bg:string)=>{
       this.background=bg
       if(bg&&bg=='bg-dark'){
         this.renderer.setClearColor( 0x000000, .9);
@@ -99,5 +99,9 @@ onScroll(event:any){
 
   }
 }
-
+ngOnDestroy(){
+  this.back.unsubscribe()
+  this.scene.clear()
+  this.renderer.clear()
+ }
 }
