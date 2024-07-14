@@ -28,7 +28,11 @@ cube1:any
 pointLights:any[]=[]
 pointLights1:any[]=[]
 back:any
-
+canvasCard:any
+scene1!:THREE.Scene
+renderer1!:THREE.WebGLRenderer
+camera1!:THREE.PerspectiveCamera
+loader:any
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
  this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
@@ -76,6 +80,7 @@ this.ngxToast.error(err.message||"Qualcosa è andato storto nell'elaborazione de
 }
 initScene(){
   this.canvas= document.getElementsByClassName('canvas')[0]
+  this.canvasCard = document.getElementsByClassName('canvas-card')[0]
 
 this.scene = new THREE.Scene()
 this.camera = new THREE.PerspectiveCamera( 75, this.canvas.offsetWidth / this.canvas.offsetHeight, 0.1, 1000 );
@@ -96,7 +101,14 @@ this.cube1 = new THREE.Mesh( this.geometry1, this.material1 );
 
 this.scene.add( this.cube,this.cube1 );
 
+this.scene1 = new THREE.Scene()
+this.camera1 = new THREE.PerspectiveCamera( 75, this.canvasCard?.offsetWidth / this.canvasCard?.offsetHeight, 0.1, 1000 );
+this.renderer1= new THREE.WebGLRenderer()
+this.renderer1.setSize(this.canvasCard?.offsetWidth, this.canvasCard?.offsetHeight );
+this.renderer1.setClearColor( 0xffffff, .001 );
+this.camera1.position.set(0,0,80)
 
+this.canvasCard?.appendChild( this.renderer1.domElement );
 
 
 for(let i =0 ; i<=7000;i++){
