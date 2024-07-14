@@ -233,7 +233,7 @@ animate() {
 this.cube.rotateY(0.001)
 this.cube1.rotateX(0.001)
 
-if(this.counter==2){
+if(this.counter==3){
   for(let i = 0 ; i <=2 ; i++){
 
     this.threeJsBlock[i].renderer.render( this.threeJsBlock[i].scene, this.threeJsBlock[i].camera );
