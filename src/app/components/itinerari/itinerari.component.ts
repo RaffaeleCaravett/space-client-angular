@@ -4,6 +4,8 @@ import { BackgroundService } from 'src/app/shared/services/background-service';
 import { ItinerariService } from 'src/app/shared/services/itinerari.service';
 import { PrenotazioniService } from 'src/app/shared/services/prenotazioni.service';
 import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+
 @Component({
   selector: 'app-itinerari',
   templateUrl: './itinerari.component.html',
@@ -32,7 +34,8 @@ canvasCard:any
 scene1!:THREE.Scene
 renderer1!:THREE.WebGLRenderer
 camera1!:THREE.PerspectiveCamera
-loader:any
+loader= new GLTFLoader()
+model:any
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
  this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
@@ -45,7 +48,6 @@ this.itinerariService.getAllPaginated().subscribe(
   {
     next:(datas)=>{
  this.pacchetti=datas
- console.log(this.pacchetti)
  this.initScene()
 
 },
@@ -53,7 +55,6 @@ error:(err)=>{
 this.ngxToast.error(err.message||"Qualcosa è andato storto nel recupero dei pacchetti.")
 },
 complete:()=>{
-
 }
 })
 }
@@ -149,7 +150,17 @@ for ( let p of this.pointLights){
                   this.cube1.add(p)
       }
 
-this.animate()
+      this.loader.load( '../../../assets/models/orrery.glb', ( gltf:any )=> {
+        this.model = gltf.scene;
+
+      this.model.scale.set(.1,.1,.1)
+      this.scene1.add( this.model );
+      const light = new THREE.AmbientLight(0x404040,100000)
+      this.scene1.add(light)
+
+      this.animate()
+      }, undefined, function ( error ) { console.error( error ); });
+
 }
 
 animate() {
