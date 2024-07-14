@@ -150,10 +150,10 @@ for ( let p of this.pointLights){
                   this.cube1.add(p)
       }
 
-      this.loader.load( '../../../assets/models/orrery.glb', ( gltf:any )=> {
+      this.loader.load( '../../../assets/models/solar_system_with_animation.glb', ( gltf:any )=> {
         this.model = gltf.scene;
 
-      this.model.scale.set(.1,.1,.1)
+      this.model.scale.set(10,10,10)
       this.scene1.add( this.model );
       const light = new THREE.AmbientLight(0x404040,100000)
       this.scene1.add(light)
