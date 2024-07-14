@@ -131,9 +131,9 @@ for(let i = 0 ; i<=this.canvases.length-1 ; i++){
 
     this.threeJsBlock[i].model = gltf.scene;
 
-    this.threeJsBlock[i].model.scale.set(10,10,10)
+    this.threeJsBlock[i].model.scale.set(.3,.3,.3)
     this.threeJsBlock[i].scene.add( this.threeJsBlock[i].model );
-    this.threeJsBlock[i].light = new THREE.AmbientLight(0x404040,100000)
+    this.threeJsBlock[i].light = new THREE.AmbientLight(0x404040,1)
 this.threeJsBlock[i].scene.add(this.threeJsBlock[i].light)
 this.counter+=1
 this.animate()
@@ -143,7 +143,7 @@ this.animate()
 
 
 
-},1500)
+},2500)
 
 
 this.scene = new THREE.Scene()
@@ -175,7 +175,7 @@ this.scene.add( this.cube,this.cube1 );
 // this.canvasCard?.appendChild( this.renderer1.domElement );
 
 
-for(let i =0 ; i<=7000;i++){
+for(let i =0 ; i<=5000;i++){
     const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
     const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
     const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );
@@ -194,7 +194,7 @@ for ( let p of this.pointLights){
                 this.cube.add(p)
     }
 
-    for(let i =0 ; i<=7000;i++){
+    for(let i =0 ; i<=5000;i++){
       const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
       const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
       const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );
