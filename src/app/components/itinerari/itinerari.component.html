@@ -27,7 +27,7 @@
         </button>
         <p class="fs-4 {{colorChecked}}" *ngIf="idChecked && idChecked == item.id">
 {{disponibility}} <br>
-<button class="btn btn-light my-3" *ngIf="disponibilita!=0">Prenota un posto</button>
+<button class="btn btn-light my-3" (click)="reserve(item)" *ngIf="disponibilita!=0">Prenota un posto</button>
       </p>
     </div>
   </div>

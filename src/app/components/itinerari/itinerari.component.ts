@@ -1,10 +1,12 @@
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { BackgroundService } from 'src/app/shared/services/background-service';
 import { ItinerariService } from 'src/app/shared/services/itinerari.service';
 import { PrenotazioniService } from 'src/app/shared/services/prenotazioni.service';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { ReservationComponent } from '../reservation/reservation.component';
 
 @Component({
   selector: 'app-itinerari',
@@ -66,7 +68,9 @@ counter:number=0
 mixer:any
 clock=new THREE.Clock();
 disponibilita:number=0
-constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
+constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService,
+  private matDialog:MatDialog
+){
  this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
   })
@@ -283,10 +287,20 @@ if ( this.mixer ) this.mixer.update( delta/10 );
     //   this.threeJsBlock[i].scene.clear()
     // }
  }
-reserve(){
+reserve(pacchetto:any){
   let user = localStorage.getItem('user')!
   if(user){
+const dialog = this.matDialog.open(ReservationComponent,{
+  data:[user,pacchetto]
+})
 
+dialog.afterClosed().subscribe((res:any)=>{
+if(res){
+  this.ngxToast.success("Prenotazione effettuata con successo.")
+}else{
+  this.ngxToast.error("Non è stata effettuata alcuna prenotazione.")
+}
+})
   }else{
     this.ngxToast.error("Sembra che tu non sia loggato.")
   }
