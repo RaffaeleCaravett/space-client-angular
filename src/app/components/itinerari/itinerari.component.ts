@@ -63,8 +63,8 @@ threeJsBlock:any =
 }
 ]
 counter:number=0
-white='rgba(0x000000'+ (.3) +')'
-dark='rgba(0xffffff'+ (.3) +')'
+mixer:any
+clock=new THREE.Clock();
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
  this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
@@ -234,6 +234,15 @@ for ( let p of this.pointLights){
         this.light = new THREE.AmbientLight(0x404040,10)
         this.scene.add(this.light)
         this.animate()
+
+       this.mixer = new THREE.AnimationMixer( gltf.scene );
+
+        gltf.animations.forEach( ( clip:any ) => {
+
+            this.mixer.clipAction( clip ).play();
+
+        } );
+
         })
 }
 
@@ -243,6 +252,9 @@ animate() {
   this.scene.rotation.set(0.0001,0.0001,0.0001)
 this.cube.rotateY(0.001)
 this.cube1.rotateX(0.001)
+var delta = this.clock.getDelta();
+
+if ( this.mixer ) this.mixer.update( delta/10 );
 
 // if(this.counter==3){
 //   for(let i = 0 ; i <=2 ; i++){
