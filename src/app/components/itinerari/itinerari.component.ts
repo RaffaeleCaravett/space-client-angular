@@ -65,6 +65,7 @@ threeJsBlock:any =
 counter:number=0
 mixer:any
 clock=new THREE.Clock();
+disponibilita:number=0
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
  this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
@@ -94,12 +95,13 @@ if(pacchettoId&&pacchettoId!=0){
     next:(data:any)=>{
 this.disponibility= `Sono disponibili ancora ${posti-data.length} posti su ${posti} per questa destinazione.`
 this.idChecked=pacchettoId;
-let disponibilità=posti-data.length
-if(disponibilità<=4){
+this.disponibilita=posti-data.length
+if(this.disponibilita<=4){
   this.colorChecked='text-red'
 }else{
   this.colorChecked='text-success'
 }
+
 },
     error:(err:any)=>{
 this.ngxToast.error(err.message||"Qualcosa è andato storto nell'elaborazione della richiesta.")
@@ -281,4 +283,13 @@ if ( this.mixer ) this.mixer.update( delta/10 );
     //   this.threeJsBlock[i].scene.clear()
     // }
  }
+reserve(){
+  let user = localStorage.getItem('user')!
+  if(user){
+
+  }else{
+    this.ngxToast.error("Sembra che tu non sia loggato.")
+  }
+}
+
 }
