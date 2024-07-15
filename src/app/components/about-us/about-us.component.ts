@@ -61,7 +61,7 @@ this.scene.add( this.cube,this.cube1 );
 
 
 
-for(let i =0 ; i<=7000;i++){
+for(let i =0 ; i<=2000;i++){
     const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
     const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
     const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );
@@ -80,7 +80,7 @@ for ( let p of this.pointLights){
                 this.cube.add(p)
     }
 
-    for(let i =0 ; i<=7000;i++){
+    for(let i =0 ; i<=2000;i++){
       const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
       const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
       const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );

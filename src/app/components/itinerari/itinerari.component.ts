@@ -31,7 +31,9 @@ pointLights:any[]=[]
 pointLights1:any[]=[]
 back:any
 canvasCard:any
-
+loader=new GLTFLoader()
+model:any
+light=new THREE.AmbientLight
 canvases:any[]=[]
 threeJsBlock:any =
 [
@@ -61,7 +63,8 @@ threeJsBlock:any =
 }
 ]
 counter:number=0
-
+white='rgba(0x000000'+ (.3) +')'
+dark='rgba(0xffffff'+ (.3) +')'
 constructor(private backgroundService:BackgroundService,private itinerariService:ItinerariService,private ngxToast:ToastrService, private prenotazioniService:PrenotazioniService){
  this.back= this.backgroundService.bgClass.subscribe((bg:string)=>{
     this.background=bg
@@ -107,43 +110,40 @@ this.ngxToast.error(err.message||"Qualcosa è andato storto nell'elaborazione de
 }
 initScene(){
   this.canvas= document.getElementsByClassName('canvas')[0]
-  this.canvasCard = document.getElementsByClassName('canvas-card') as HTMLCollection
-setTimeout(()=>{
-  if(this.canvasCard){
-    for(let c of this.canvasCard){
-      this.canvases.push(c)
-    }
-  }
+  // this.canvasCard = document.getElementsByClassName('canvas-card') as HTMLCollection
+// setTimeout(()=>{
+//   if(this.canvasCard){
+//     for(let c of this.canvasCard){
+//       this.canvases.push(c)
+//     }
+//   }
 
-for(let i = 0 ; i<=this.canvases.length-1 ; i++){
-  console.log(i, this.canvases.length,this.canvases[i])
- this.threeJsBlock[i].scene = new THREE.Scene()
-   this.threeJsBlock[i].camera = new THREE.PerspectiveCamera( 75, this.canvases[i].offsetWidth / this.canvases[i].offsetHeight, 0.1, 1000 );
-  this.threeJsBlock[i].renderer = new THREE.WebGLRenderer()
-  this.threeJsBlock[i].renderer.setSize(this.canvases[i].offsetWidth, this.canvases[i].offsetHeight );
-  this.threeJsBlock[i].renderer.setClearColor( 0x000000, .001 );
-  this.threeJsBlock[i].camera.position.set(0,0,80)
+// for(let i = 0 ; i<=this.canvases.length-1 ; i++){
+//  this.threeJsBlock[i].scene = new THREE.Scene()
+//    this.threeJsBlock[i].camera = new THREE.PerspectiveCamera( 75, this.canvases[i].offsetWidth / this.canvases[i].offsetHeight, 0.1, 1000 );
+//   this.threeJsBlock[i].renderer = new THREE.WebGLRenderer()
+//   this.threeJsBlock[i].renderer.setSize(this.canvases[i].offsetWidth, this.canvases[i].offsetHeight );
+//   this.threeJsBlock[i].renderer.setClearColor( 0x000000, .001 );
+//   this.threeJsBlock[i].camera.position.set(0,0,80)
 
-  this.canvases[i].appendChild(  this.threeJsBlock[i].renderer.domElement );
-  this.threeJsBlock[i].loader = new GLTFLoader()
+//   this.canvases[i].appendChild(  this.threeJsBlock[i].renderer.domElement );
+//   this.threeJsBlock[i].loader = new GLTFLoader()
 
-  this.threeJsBlock[i].loader.load( '../../../assets/models/solar_system_with_animation.glb', ( gltf:any )=> {
+//   this.threeJsBlock[i].loader.load( '../../../assets/models/solar_system_with_animation.glb', ( gltf:any )=> {
 
-    this.threeJsBlock[i].model = gltf.scene;
+//     this.threeJsBlock[i].model = gltf.scene;
 
-    this.threeJsBlock[i].model.scale.set(.3,.3,.3)
-    this.threeJsBlock[i].scene.add( this.threeJsBlock[i].model );
-    this.threeJsBlock[i].light = new THREE.AmbientLight(0x404040,10)
-this.threeJsBlock[i].scene.add(this.threeJsBlock[i].light)
-this.counter+=1
-this.animate()
-}, undefined, function ( error:any ) { console.error( error ); });
+//     this.threeJsBlock[i].model.scale.set(.3,.3,.3)
+//     this.threeJsBlock[i].scene.add( this.threeJsBlock[i].model );
+//     this.threeJsBlock[i].light = new THREE.AmbientLight(0x404040,10)
+// this.threeJsBlock[i].scene.add(this.threeJsBlock[i].light)
+// this.counter+=1
+// this.animate()
+// }, undefined, function ( error:any ) { console.error( error ); });
 
-}
+// }
+// },1000)
 
-
-
-},2500)
 
 
 this.scene = new THREE.Scene()
@@ -175,7 +175,7 @@ this.scene.add( this.cube,this.cube1 );
 // this.canvasCard?.appendChild( this.renderer1.domElement );
 
 
-for(let i =0 ; i<=5000;i++){
+for(let i =0 ; i<=2000;i++){
     const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
     const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
     const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );
@@ -194,7 +194,7 @@ for ( let p of this.pointLights){
                 this.cube.add(p)
     }
 
-    for(let i =0 ; i<=5000;i++){
+    for(let i =0 ; i<=2000;i++){
       const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
       const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
       const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );
@@ -223,7 +223,18 @@ for ( let p of this.pointLights){
 
       // this.animate()
       // }, undefined, function ( error ) { console.error( error ); });
+      this.loader = new GLTFLoader()
 
+    this.loader.load( '../../../assets/models/solar_system_with_animation.glb', ( gltf:any )=> {
+
+        this.model = gltf.scene;
+
+        this.model.scale.set(.3,.3,.3)
+        this.scene.add( this.model );
+        this.light = new THREE.AmbientLight(0x404040,10)
+        this.scene.add(this.light)
+        this.animate()
+        })
 }
 
 animate() {
@@ -233,12 +244,12 @@ animate() {
 this.cube.rotateY(0.001)
 this.cube1.rotateX(0.001)
 
-if(this.counter==3){
-  for(let i = 0 ; i <=2 ; i++){
+// if(this.counter==3){
+//   for(let i = 0 ; i <=2 ; i++){
 
-    this.threeJsBlock[i].renderer.render( this.threeJsBlock[i].scene, this.threeJsBlock[i].camera );
-  }
-}
+//     this.threeJsBlock[i].renderer.render( this.threeJsBlock[i].scene, this.threeJsBlock[i].camera );
+//   }
+// }
 
  }
  @HostListener('window:resize', ['$event'])
@@ -253,5 +264,9 @@ if(this.counter==3){
   this.back.unsubscribe()
   this.scene.clear()
   this.renderer.clear()
+    // for(let i = 0; i<=2;i++){
+    //   this.threeJsBlock[i].renderer.clear()
+    //   this.threeJsBlock[i].scene.clear()
+    // }
  }
 }

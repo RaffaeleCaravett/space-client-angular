@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, HostListener, OnInit } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -9,7 +9,7 @@ import { BackgroundService } from 'src/app/shared/services/background-service';
   templateUrl: './mezzi.component.html',
   styleUrls: ['./mezzi.component.scss']
 })
-export class MezziComponent implements OnInit {
+export class MezziComponent implements OnInit,OnDestroy {
 
   canvas:any
 scene!:THREE.Scene
@@ -134,11 +134,12 @@ getBackground(color:string){
 
 initScene(){
   this.canvas= document.getElementsByClassName('canvas')[0]
+  console.log(this.canvas)
 this.scene = new THREE.Scene()
 this.camera = new THREE.PerspectiveCamera( 75, this.canvas.offsetWidth / this.canvas.offsetHeight, 0.1, 1000 );
 this.renderer= new THREE.WebGLRenderer()
 this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight );
-this.renderer.setClearColor( 0xffffff, 1 );
+this.renderer.setClearColor( 0xffffff, .001 );
 this.camera.position.set(0,0,80)
 
 this.canvas.appendChild( this.renderer.domElement );
@@ -156,7 +157,7 @@ this.scene.add( this.cube,this.cube1 );
 
 
 
-for(let i =0 ; i<=7000;i++){
+for(let i =0 ; i<=2000;i++){
     const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
     const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
     const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );
@@ -175,7 +176,7 @@ for ( let p of this.pointLights){
                 this.cube.add(p)
     }
 
-    for(let i =0 ; i<=7000;i++){
+    for(let i =0 ; i<=2000;i++){
       const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
       const material = new THREE.MeshBasicMaterial( { color: 0xFFD700 } );
       const sphere = new THREE.Mesh( geometry, material ); this.scene.add( sphere );
@@ -193,7 +194,7 @@ for ( let p of this.pointLights){
                   p.position.z = randomNumberThirty;
                   this.cube1.add(p)
       }
-
+this.scene.add(this.cube,this.cube1)
 setTimeout(()=>{
   this.canvas1= document.getElementsByClassName('canvas-card')
 
@@ -275,6 +276,13 @@ for(let i = 0; i<=5;i++){
  }
 
 
-
+ngOnDestroy(): void {
+  for(let i = 0; i<=5;i++){
+    this.threeJsArray[i].renderer.clear()
+    this.threeJsArray[i].scene.clear()
+  }
+  this.scene.clear()
+  this.renderer.clear()
+}
 
 }

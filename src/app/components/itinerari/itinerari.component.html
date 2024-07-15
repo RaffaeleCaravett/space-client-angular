@@ -1,14 +1,14 @@
-<div class="position-relative p-0 m-0">
-  <div class=" px-5 text-center py-5  {{background}} {{background=='bg-white'?'text-dark':'text-white'}}">
+<div class="position-relative p-0 m-0 bg-transparent">
+  <div class=" px-5 text-center py-5  {{background=='bg-white'?'text-dark':'text-white'}}">
     <div class="row p-5">
       <div class="col-md-12">
         <h1 class="{{background=='bg-white'?'text-dark':'text-white'}}">Scopri i nostri itinerari</h1>
       </div>
-<div class="col-md-7 m-auto border bg-transparent p-3 rounded my-2 position-relative" *ngFor="let item of pacchetti?.content">
-  <div class="canvas-card"></div>
-  <div class="row bg-transparent text-white">
+<div class="col-md-7 m-auto border bg-personal p-3 rounded my-2 position-relative {{background=='bg-white'?'text-dark':'text-white'}}" [ngStyle]="{'background' :background=='bg-white'?'rgba(255, 255, 255, .5)':'rgba(0, 0, 0, .5)'}" *ngFor="let item of pacchetti?.content">
+  <!-- <div class="canvas-card"></div> -->
+  <div class="row">
     <div class="col-md-12 text-start z-3">
-      <p class="px-5 py-2 bg-transparent">
+      <p class="px-5 py-2">
         <span>Dal {{item.da}} - </span>
         <span>Al {{item.a}}</span>
       </p>
@@ -25,6 +25,7 @@
         <button class="btn  {{background=='bg-white'?'btn-dark':'btn-light'}}" (click)="calculateReservationbAvailable(item.id,item.prezzo)" *ngIf="disponibility=='' || idChecked!=item.id">
           Controlla disponibilità
         </button>
+
         <p class="fs-4 {{colorChecked}}" *ngIf="idChecked && idChecked == item.id">
 {{disponibility}}
       </p>
