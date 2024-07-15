@@ -120,7 +120,9 @@ this.backgroundService.bgClass.subscribe((bg:string)=>{
 
   ngOnInit(): void {
 localStorage.setItem('location','mezzi')
-this.initScene()
+setTimeout(()=>{
+  this.initScene()
+},1000)
   }
 
 
@@ -134,7 +136,6 @@ getBackground(color:string){
 
 initScene(){
   this.canvas= document.getElementsByClassName('canvas')[0]
-  console.log(this.canvas)
 this.scene = new THREE.Scene()
 this.camera = new THREE.PerspectiveCamera( 75, this.canvas.offsetWidth / this.canvas.offsetHeight, 0.1, 1000 );
 this.renderer= new THREE.WebGLRenderer()
@@ -151,11 +152,6 @@ this.cube = new THREE.Mesh( this.geometry, this.material );
 this.geometry1 = new THREE.BoxGeometry( .1, .1, .1 );
 this.material1 = new THREE.MeshBasicMaterial( {color: 0x000000} );
 this.cube1 = new THREE.Mesh( this.geometry1, this.material1 );
-
-this.scene.add( this.cube,this.cube1 );
-
-
-
 
 for(let i =0 ; i<=2000;i++){
     const geometry = new THREE.SphereGeometry( Math.random()*0.25,Math.random()*0.5, Math.random()*0.25 );
@@ -229,10 +225,11 @@ this.threeJsArray[this.canvases.indexOf(cv1)].camera.position.set(0,0,80)
         },1000)
       })
       }
+      this.animate()
 },3000)
 
 
-this.animate()
+
 }
 
 animate() {
