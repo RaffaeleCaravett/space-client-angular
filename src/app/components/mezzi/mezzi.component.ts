@@ -110,7 +110,7 @@ threeJsCheck:boolean=false
 scene1!:THREE.Scene
 camera1!:THREE.PerspectiveCamera
 renderer1!:THREE.WebGLRenderer
-
+canvases:any[] = []
 
 constructor(private backgroundService:BackgroundService){
 this.backgroundService.bgClass.subscribe((bg:string)=>{
@@ -196,33 +196,33 @@ for ( let p of this.pointLights){
 
 setTimeout(()=>{
   this.canvas1= document.getElementsByClassName('canvas-card')
-let canvases:any[] = []
+
   for (let cv1 of this.canvas1){
-    canvases.push(cv1)
+   this.canvases.push(cv1)
 
-this.threeJsArray[canvases.indexOf(cv1)].scene=new THREE.Scene()
-this.threeJsArray[canvases.indexOf(cv1)].camera = new THREE.PerspectiveCamera( 75, cv1.offsetWidth / cv1.offsetHeight, 0.1, 1000 );
-this.threeJsArray[canvases.indexOf(cv1)].renderer= new THREE.WebGLRenderer()
-this.threeJsArray[canvases.indexOf(cv1)].renderer.setClearColor( '#ffffff', .001 );
-this.threeJsArray[canvases.indexOf(cv1)].renderer.setSize(cv1.offsetWidth ,cv1.offsetHeight);
+this.threeJsArray[this.canvases.indexOf(cv1)].scene=new THREE.Scene()
+this.threeJsArray[this.canvases.indexOf(cv1)].camera = new THREE.PerspectiveCamera( 75, cv1.offsetWidth / cv1.offsetHeight, 0.1, 1000 );
+this.threeJsArray[this.canvases.indexOf(cv1)].renderer= new THREE.WebGLRenderer()
+this.threeJsArray[this.canvases.indexOf(cv1)].renderer.setClearColor( '#ffffff', .001 );
+this.threeJsArray[this.canvases.indexOf(cv1)].renderer.setSize(cv1.offsetWidth ,cv1.offsetHeight);
 
-this.threeJsArray[canvases.indexOf(cv1)].camera.position.set(0,0,80)
+this.threeJsArray[this.canvases.indexOf(cv1)].camera.position.set(0,0,80)
 
-        cv1.appendChild( this.threeJsArray[canvases.indexOf(cv1)].renderer.domElement );
+        cv1.appendChild( this.threeJsArray[this.canvases.indexOf(cv1)].renderer.domElement );
 
-        this.threeJsArray[canvases.indexOf(cv1)].loader = new GLTFLoader()
+        this.threeJsArray[this.canvases.indexOf(cv1)].loader = new GLTFLoader()
 
-        this.threeJsArray[canvases.indexOf(cv1)].loader.load( '../../../assets/models/helicopter_space_ship.glb', ( gltf:any )=> {
+        this.threeJsArray[this.canvases.indexOf(cv1)].loader.load( '../../../assets/models/helicopter_space_ship.glb', ( gltf:any )=> {
 
-          this.threeJsArray[canvases.indexOf(cv1)].model = gltf.scene;
+          this.threeJsArray[this.canvases.indexOf(cv1)].model = gltf.scene;
 
-          this.threeJsArray[canvases.indexOf(cv1)].model.scale.set(10,10,10)
-        this.threeJsArray[canvases.indexOf(cv1)].scene.add( this.threeJsArray[canvases.indexOf(cv1)].model );
-        this.threeJsArray[canvases.indexOf(cv1)].light = new THREE.AmbientLight(canvases.indexOf(cv1)==0?'#FF0000':canvases.indexOf(cv1)==1?'#008000':canvases.indexOf(cv1)==2?
-        '#FFFF00':canvases.indexOf(cv1)==3?'#ADD8E6':canvases.indexOf(cv1)==4?'#FFB6C1':canvases.indexOf(cv1)==5?'0x000000':'0xffffff',10)
-        this.threeJsArray[canvases.indexOf(cv1)].scene.add(this.threeJsArray[canvases.indexOf(cv1)].light)
-        this.threeJsArray[canvases.indexOf(cv1)].orbit = new OrbitControls(this.threeJsArray[canvases.indexOf(cv1)].camera,this.threeJsArray[canvases.indexOf(cv1)].renderer.domElement)
-        this.threeJsArray[canvases.indexOf(cv1)].orbit.update()
+          this.threeJsArray[this.canvases.indexOf(cv1)].model.scale.set(10,10,10)
+        this.threeJsArray[this.canvases.indexOf(cv1)].scene.add( this.threeJsArray[this.canvases.indexOf(cv1)].model );
+        this.threeJsArray[this.canvases.indexOf(cv1)].light = new THREE.AmbientLight(this.canvases.indexOf(cv1)==0?'#FF0000':this.canvases.indexOf(cv1)==1?'#008000':this.canvases.indexOf(cv1)==2?
+        '#FFFF00':this.canvases.indexOf(cv1)==3?'#ADD8E6':this.canvases.indexOf(cv1)==4?'#FFB6C1':this.canvases.indexOf(cv1)==5?0x000000:'0xffffff',10)
+        this.threeJsArray[this.canvases.indexOf(cv1)].scene.add(this.threeJsArray[this.canvases.indexOf(cv1)].light)
+        this.threeJsArray[this.canvases.indexOf(cv1)].orbit = new OrbitControls(this.threeJsArray[this.canvases.indexOf(cv1)].camera,this.threeJsArray[this.canvases.indexOf(cv1)].renderer.domElement)
+        this.threeJsArray[this.canvases.indexOf(cv1)].orbit.update()
         setTimeout(()=>{
           this.threeJsCheck=true
         },1000)
@@ -253,6 +253,25 @@ for(let i = 0; i<=5;i++){
  @HostListener('window:resize', ['$event'])
  onResize(event:any) {
    this.windowHeight=this.calculateHeightLess30()
+   this.renderer.setSize(this.canvas.offsetWidth, this.canvas.offsetHeight);
+   this.camera.aspect = this.canvas.offsetWidth/ this.canvas.offsetHeight;
+		this.camera.updateProjectionMatrix();
+    this.renderer.render(this.scene, this.camera);
+    for(let i = 0; i<=5;i++){
+      this.threeJsArray[i].renderer.render(this.threeJsArray[i].scene,this.threeJsArray[i].camera )
+      this.threeJsArray[i].orbit.update()
+      this.threeJsArray[i].renderer.setSize(this.canvases[i].offsetWidth, this.canvases[i].offsetHeight);
+      this.threeJsArray[i].camera.aspect = this.canvases[i].offsetWidth/ this.canvases[i].offsetHeight;
+      this.threeJsArray[i].camera.updateProjectionMatrix();
+      this.threeJsArray[i].renderer.render(this.threeJsArray[i].scene, this.threeJsArray[i].camera);
+      if(window.innerWidth<=384){
+        this.threeJsArray[i].model.scale.set(3,3,3)
+      }else if(window.innerWidth<=900){
+        this.threeJsArray[i].model.scale.set(5,5,5)
+      }else{
+        this.threeJsArray[i].model.scale.set(10,10,10)
+      }
+    }
  }
 
 
