@@ -121,7 +121,7 @@ for(let i = 0 ; i<=this.canvases.length-1 ; i++){
    this.threeJsBlock[i].camera = new THREE.PerspectiveCamera( 75, this.canvases[i].offsetWidth / this.canvases[i].offsetHeight, 0.1, 1000 );
   this.threeJsBlock[i].renderer = new THREE.WebGLRenderer()
   this.threeJsBlock[i].renderer.setSize(this.canvases[i].offsetWidth, this.canvases[i].offsetHeight );
-  this.threeJsBlock[i].renderer.setClearColor( 0xffffff, .001 );
+  this.threeJsBlock[i].renderer.setClearColor( 0x000000, .001 );
   this.threeJsBlock[i].camera.position.set(0,0,80)
 
   this.canvases[i].appendChild(  this.threeJsBlock[i].renderer.domElement );
@@ -133,7 +133,7 @@ for(let i = 0 ; i<=this.canvases.length-1 ; i++){
 
     this.threeJsBlock[i].model.scale.set(.3,.3,.3)
     this.threeJsBlock[i].scene.add( this.threeJsBlock[i].model );
-    this.threeJsBlock[i].light = new THREE.AmbientLight(0x404040,1)
+    this.threeJsBlock[i].light = new THREE.AmbientLight(0x404040,10)
 this.threeJsBlock[i].scene.add(this.threeJsBlock[i].light)
 this.counter+=1
 this.animate()
