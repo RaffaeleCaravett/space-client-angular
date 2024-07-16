@@ -20,6 +20,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import { TokenInterceptor } from './core/token.interceptor';
 import { provideToastr, ToastrModule } from 'ngx-toastr';
+import { ReservationComponent } from './components/reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { provideToastr, ToastrModule } from 'ngx-toastr';
     ItinerariComponent,
     SpaceCrewComponent,
     MezziComponent,
-    AboutUsComponent
+    AboutUsComponent,
+    ReservationComponent
   ],
   imports: [
     BrowserModule,
