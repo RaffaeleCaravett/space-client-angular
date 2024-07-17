@@ -288,7 +288,7 @@ if ( this.mixer ) this.mixer.update( delta/10 );
     // }
  }
 reserve(pacchetto:any){
-  let user = localStorage.getItem('user')!
+  let user = localStorage.getItem('userSpaceUser')!
   if(user){
 const dialog = this.matDialog.open(ReservationComponent,{
   data:[user,pacchetto]
