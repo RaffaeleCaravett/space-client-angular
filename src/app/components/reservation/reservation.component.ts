@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reservation',
@@ -9,7 +11,10 @@ import { FormGroup } from '@angular/forms';
 export class ReservationComponent implements OnInit{
 reservationForm!:FormGroup
 
+
+constructor(private dialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any , private toastr:ToastrService) {
+}
 ngOnInit(): void {
-  throw new Error('Method not implemented.');
+console.log(this.data)
 }
 }

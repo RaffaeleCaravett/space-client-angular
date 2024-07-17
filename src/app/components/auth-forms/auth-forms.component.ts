@@ -1,3 +1,4 @@
+import { JsonPipe } from '@angular/common';
 import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -74,6 +75,7 @@ if(res&&res.role=='ADMIN'){
  localStorage.clear()
  this.loginForm.reset()
 }else{
+  localStorage.setItem('userSpaceUser',JSON.stringify(res))
   this.loginFormError=""
   this.authService.authenticateUser(true)
   this.router.navigate(['/itinerari'])
