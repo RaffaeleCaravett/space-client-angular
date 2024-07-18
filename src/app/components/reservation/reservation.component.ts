@@ -15,12 +15,13 @@ user:any
 constructor(private dialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any , private toastr:ToastrService) {
 }
 ngOnInit(): void {
+  console.log(this.data[1])
 this.user=JSON.parse(this.data[0])
 this.reservationForm= new FormGroup({
-  nome: new FormControl(),
-  cognome: new FormControl(),
-  eta: new FormControl(),
-  email: new FormControl(),
+  nome: new FormControl(this.user.nome||''),
+  cognome: new FormControl(this.user.cognome||''),
+  eta: new FormControl(this.user.eta||''),
+  email: new FormControl(this.user.email||''),
   nomePianeta: new FormControl(),
   Da: new FormControl(),
   A: new FormControl(),
