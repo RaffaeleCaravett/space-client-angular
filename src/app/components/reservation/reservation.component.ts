@@ -27,4 +27,7 @@ this.reservationForm= new FormGroup({
   A: new FormControl(this.package.a||'',Validators.required),
 })
 }
+generatePdf(){
+
+}
 }
