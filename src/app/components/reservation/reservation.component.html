@@ -12,19 +12,19 @@
   <div class="row">
 <form [formGroup]="reservationForm">
   <label for="">Nome prenotazione </label>
-  <input type="text" formControlName="nome" class="form-control">
+  <input type="text" formControlName="nome" class="form-control" [readonly]="reservationForm.controls['nome'].value">
   <label for="">Cognome prenotazione</label>
-  <input type="text" formControlName="cognome" class="form-control">
+  <input type="text" formControlName="cognome" class="form-control" [readonly]="reservationForm.controls['cognome'].value">
   <label for="">Eta </label>
-  <input type="text" formControlName="eta" class="form-control">
+  <input type="text" formControlName="eta" class="form-control" [readonly]="reservationForm.controls['eta'].value">
   <label for="">Email prenotazione</label>
-  <input type="text" formControlName="email" class="form-control">
+  <input type="text" formControlName="email" class="form-control" [readonly]="reservationForm.controls['email'].value">
   <label for="">Dove ?</label>
-  <input type="text" formControlName="nomePianeta" class="form-control">
+  <input type="text" formControlName="nomePianeta" class="form-control" [readonly]="reservationForm.controls['nomePianeta'].value">
   <label for="">Da </label>
-  <input type="date" formControlName="Da" class="form-control">
+  <input type="date" formControlName="Da" class="form-control" [readonly]="reservationForm.controls['Da'].value">
   <label for="">A </label>
-  <input type="date" formControlName="A" class="form-control">
+  <input type="date" formControlName="A" class="form-control" [readonly]="!reservationForm.controls['A'].value">
   <div class="row py-3">
     <div class="col-md-6 py-3">Prenota</div>
     <div class="col-md-6 py-3">Scarica pdf</div>
