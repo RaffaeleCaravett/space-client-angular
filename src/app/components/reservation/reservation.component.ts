@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/app/core/environment';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 @Component({
   selector: 'app-reservation',
@@ -13,7 +14,7 @@ export class ReservationComponent implements OnInit{
 reservationForm!:FormGroup
 user:any
 package:any
-constructor(private dialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any , private toastr:ToastrService) {
+constructor(private dialogRef: MatDialogRef<ReservationComponent>, @Inject(MAT_DIALOG_DATA) public data: any , private toastr:ToastrService, private authService:AuthService) {
 }
 ngOnInit(): void {
 this.user=JSON.parse(this.data[0])
@@ -33,7 +34,8 @@ generatePdf(){
 const download = fetch(`${environment.API_URL}/pdf`,{
   method: "POST",
   headers: {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${this.authService.token||''}`
   },
   body:
   JSON.stringify(
