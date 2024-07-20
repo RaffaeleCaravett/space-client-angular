@@ -24,10 +24,18 @@
   <label for="">Da </label>
   <input type="date" formControlName="Da" class="form-control" [readonly]="reservationForm.controls['Da'].value">
   <label for="">A </label>
-  <input type="date" formControlName="A" class="form-control" [readonly]="!reservationForm.controls['A'].value">
+  <input type="date" formControlName="A" class="form-control" [readonly]="reservationForm.controls['A'].value">
   <div class="row py-3">
-    <div class="col-md-6 py-3">Prenota</div>
-    <div class="col-md-6 py-3">Scarica pdf</div>
+    <div class="col-md-6 py-3">
+      <button class="btn shadow-none">
+        Prenota
+      </button>
+    </div>
+    <div class="col-md-6 py-3" (click)="generatePdf()">
+      <button class="btn shadow-none">
+        Scarica pdf
+      </button>
+    </div>
   </div>
 </form>
   </div>

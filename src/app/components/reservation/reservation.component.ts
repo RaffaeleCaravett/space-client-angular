@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/app/core/environment';
 
 @Component({
   selector: 'app-reservation',
@@ -28,6 +29,16 @@ this.reservationForm= new FormGroup({
 })
 }
 generatePdf(){
+
+const download = fetch(`${environment.API_URL}/pdf`,{
+
+}).then((res)=>{
+  return res.json()
+}).then((res)=>{
+  console.log(res)
+}).catch((error)=>{
+  console.log(error)
+})
 
 }
 }
