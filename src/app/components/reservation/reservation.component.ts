@@ -31,7 +31,17 @@ this.reservationForm= new FormGroup({
 generatePdf(){
 
 const download = fetch(`${environment.API_URL}/pdf`,{
-
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body:
+  JSON.stringify(
+    {
+      user_id:this.user.id,
+      pacchetto_id:[this.package.id]
+    }
+  )
 }).then((res)=>{
   return res.json()
 }).then((res)=>{
