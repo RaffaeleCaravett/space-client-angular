@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Type } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -45,11 +45,24 @@ const download = fetch(`${environment.API_URL}/pdf`,{
     }
   )
 }).then((res)=>{
-  return res.json()
+  if (!res.ok) {
+    return res.json().then(error => {
+      throw new Error(error.message || error.messageList[0] || 'Abbiamo riscontrato un errore nell\'elaborazione della richiesta.');
+    });
+  }
+  return res.blob();
 }).then((res)=>{
-  console.log(res)
+const blob = new Blob([res], { type: 'application/pdf' });
+const url = window.URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = `Prenotazione per ${this.package.pianetas[0].nome}.pdf`;
+document.body.appendChild(a);
+a.click();
+window.URL.revokeObjectURL(url);
+document.body.removeChild(a);
 }).catch((error)=>{
-  console.log(error)
+  this.toastr.error(error.toString())
 })
 
 }
